@@ -1,19 +1,27 @@
-#//////////////////////////////////////////////////
-#// Title:   simualte
-#// Author:  
-#// Date:    
-#//////////////////////////////////////////////////
+#!/bin/bash
+RED='\033[0;31m'
+NC='\033[0m'  
+rm -rf transcript 
 
-rm -rf work
-vlib work
+if ./compile.sh
+then
+	echo "Success"
+else
+	echo "Failure"
+	exit 1
+fi
 
-echo ""
-echo "Compiling hdlc"
-vlog -sv ../rtl/hdlc.sv ../rtl/AddressIF.sv ../rtl/RxController.sv ../rtl/RxChannel.sv ../rtl/RxBuff.sv ../rtl/RxFCS.sv ../rtl/TxController.sv ../rtl/TxChannel.sv ../rtl/TxBuff.sv ../rtl/TxFCS.sv
-vlog -sv in_hdlc.sv test_hdlc.sv testPr_hdlc.sv bind_hdlc.sv assertions_hdlc.sv
-
-echo ""
-echo "Simulating hdlc"
-vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "
-log -r *
-run -all; exit"
+printf "${RED}\nSimulating${NC}\n"
+if [[ "$@" =~ --gui ]]
+then
+  	echo vsim -assertdebug -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *" &
+  	exit
+else
+	if vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
+	then
+		echo "Success"
+	else
+		echo "Failure"
+		exit 1
+	fi
+fi
