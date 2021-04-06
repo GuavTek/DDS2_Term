@@ -1,0 +1,398 @@
+# vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
+# Start time: 14:59:39 on Apr 06,2021
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "RxBuff(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxController(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "RxController(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxBuff(fast)".
+# ** Warning: ./test_hdlc.sv(45): (vopt-2685) [TFMPC] - Too few port connections for 'u_dut'.  Expected 13, found 10.
+# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx_Done'.
+# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'TxEN'.
+# ** Warning: ./test_hdlc.sv(45): (vopt-2718) [TFMPC] - Missing connection for port 'Tx'.
+# //  Questa Sim-64
+# //  Version 10.5c linux_x86_64 Jul 20 2016
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.test_hdlc(fast)
+# Loading work.in_hdlc(fast)
+# Loading work.Hdlc(fast)
+# Loading work.AddressIF(fast)
+# Loading work.TxController(fast)
+# Loading work.TxBuff(fast)
+# Loading work.TxFCS(fast)
+# Loading work.TxChannel(fast)
+# Loading work.RxController(fast)
+# Loading work.RxBuff(fast)
+# Loading work.RxFCS(fast)
+# Loading work.RxChannel(fast)
+# Loading work.testPr_hdlc(fast)
+# Loading work.assertions_hdlc(fast)
+# Loading work.bind_hdlc(fast)
+# log -r *
+#  run -all
+# *************************************************************
+#                    0 - Starting Test Program
+# *************************************************************
+# *************************************************************
+#                 1000 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! Rx buffer is ready
+# PASS! No frame error
+# PASS! Abort flag not set
+# PASS! No overflow
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# *************************************************************
+#                78250 - Starting task Receive - Abort
+# *************************************************************
+# PASS: Flag detect
+# PASS: Abort signal
+# PASS! Abortsignal was set
+# PASS! No frame errors
+# PASS! No overflow flag
+# PASS! Rx buffer has no data
+# PASS! Data buffer is empty
+# *************************************************************
+#               395250 - Starting task Receive - Overflow
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! Overflow flag set
+# PASS! Buffer has data to read
+# PASS! No frame errors
+# PASS! No abort
+# *************************************************************
+#               949250 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! Rx buffer is ready
+# PASS! No frame error
+# PASS! Abort flag not set
+# PASS! No overflow
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# *************************************************************
+#              1203750 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! Rx buffer is ready
+# PASS! No frame error
+# PASS! Abort flag not set
+# PASS! No overflow
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# *************************************************************
+#              1867250 - Starting task Receive - Abort
+# *************************************************************
+# PASS: Flag detect
+# PASS: Abort signal
+# PASS! Abortsignal was set
+# PASS! No frame errors
+# PASS! No overflow flag
+# PASS! Rx buffer has no data
+# PASS! Data buffer is empty
+# *************************************************************
+#              2520750 - Starting task Receive - Overflow
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! Overflow flag set
+# PASS! Buffer has data to read
+# PASS! No frame errors
+# PASS! No abort
+# *************************************************************
+#              3069750 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! Rx buffer is ready
+# PASS! No frame error
+# PASS! Abort flag not set
+# PASS! No overflow
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# *************************************************************
+#              3225250 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! Rx buffer is ready
+# PASS! No frame error
+# PASS! Abort flag not set
+# PASS! No overflow
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# *************************************************************
+#              3490250 - Finishing Test Program
+# *************************************************************
+# ** Note: $stop    : ./testPr_hdlc.sv(221)
+#    Time: 3490250 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 221
+# Stopped at ./testPr_hdlc.sv line 221
+#  exit
+# *********************************
+# *                               *
+# * 	Assertion Errors: 0	  *
+# *                               *
+# *********************************
+# End time: 14:59:43 on Apr 06,2021, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 4
