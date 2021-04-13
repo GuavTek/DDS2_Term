@@ -191,10 +191,10 @@ program testPr_hdlc(
   // #11
   // CRC verification
   task VerifyCRC(logic [127:0][7:0] data, int Size);
-  logic[16:0] P = 'h8005;
-  logic[15:0] fcs = 0;
-  logic[16:0] temp = 0;
-  logic[15:0] crc = {data[Size+1], data[Size]};
+  automatic logic[16:0] P = 'h8005;
+  automatic logic[15:0] fcs = 0;
+  automatic logic[16:0] temp = 0;
+  automatic logic[15:0] crc = {data[Size+1], data[Size]};
 
 /*
   for (int i = 0; i < Size; i++) begin
@@ -216,8 +216,6 @@ program testPr_hdlc(
     $display("PASS! Correct CRC generated");
   else 
     $display("ERROR! CRC bytes don't match. Got %4h, but should be %4h", crc, fcs);  
-
-  
 
   endtask
 
