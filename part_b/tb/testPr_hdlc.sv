@@ -196,20 +196,6 @@ program testPr_hdlc(
   automatic logic[16:0] temp = 0;
   automatic logic[15:0] crc = {data[Size+1], data[Size]};
 
-  /*
-  for (int i = 0; i < Size; i++) begin
-    for (int j = 0; j < 8; j++) begin
-      temp = P ^ {data[i][j], fcs};
-      fcs = temp[16:1];
-    end
-  end
-
-  for (int j = 0; j < 16; j++) begin
-      temp = P ^ {1'b0, fcs};
-      fcs = temp[16:1];
-  end
-  */
-
   fcs[7:0] = data[0];
   fcs[15:8] = data[1];
 
