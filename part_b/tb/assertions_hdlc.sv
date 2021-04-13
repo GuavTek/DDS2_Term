@@ -133,7 +133,7 @@ module assertions_hdlc (
   // #13
   // Rx_Overflow, maybe count Rx_NewBytes
   property RX_ovf;
-    StartStop_pattern(Rx) ##1 !Rx_ValidFrame |=> (Rx_NewByte[->130] ##1 Rx_Overflow) or !Rx_ValidFrame[->1];
+    StartStop_pattern(Rx) ##1 !Rx_ValidFrame ##1 (Rx_NewByte[->130] within ##[$] StartStop_pattern(Rx)) |=> Rx_Overflow;
   endproperty
 
   RX_ovf_Assert: assert property (@(posedge Clk) RX_ovf)
