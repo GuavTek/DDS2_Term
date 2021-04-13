@@ -220,10 +220,10 @@ program testPr_hdlc(
     end
   end
 
-  assert (crc == fcs) 
+  assert (fcs == 0) 
     $display("PASS! Correct CRC generated");
   else 
-    $display("ERROR! CRC bytes don't match. Got %4h, but should be %4h", crc, fcs);  
+    $display("ERROR! CRC bytes don't match. Got %4h", fcs);  
 
   endtask
 
