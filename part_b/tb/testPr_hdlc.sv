@@ -212,6 +212,11 @@ program testPr_hdlc(
     end
   end
 
+  for (int j = 0; j < 16; j++) begin
+      temp = P ^ {1'b0, fcs};
+      fcs = temp[16:1];
+  end
+
   assert (crc == fcs) 
     $display("PASS! Correct CRC generated");
   else 
