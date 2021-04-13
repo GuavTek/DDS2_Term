@@ -80,7 +80,7 @@ module assertions_hdlc (
   // #12
   // End of frame detect
   property RX_EOF;
-    (Rx_FlagDetect && Rx_ValidFrame) |-> ##5 Rx_EoF;
+    $fell(Rx_ValidFrame) |=> Rx_EoF;
   endproperty
 
   RX_EOF_Assert: assert property (@(posedge Clk) RX_EOF)
