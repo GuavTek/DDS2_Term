@@ -39,6 +39,7 @@ module assertions_hdlc (
     !Rx ##1 Rx[*6] ##1 !Rx;
   endsequence
 
+  // #?
   // Check if flag sequence is detected
   property RX_FlagDetect;
     @(posedge Clk) Rx_flag |-> ##2 Rx_FlagDetect;
@@ -54,7 +55,7 @@ module assertions_hdlc (
   /********************************************
    *  Verify correct Rx_AbortSignal behavior  *
    ********************************************/
-
+  // #10
   //If abort is detected during valid frame. then abort signal should go high
   property RX_AbortSignal;
     @(posedge Clk) (Rx_AbortDetect && Rx_ValidFrame) |=> Rx_AbortSignal;

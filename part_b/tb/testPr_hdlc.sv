@@ -32,6 +32,7 @@ program testPr_hdlc(
 
   // VerifyAbortReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer is zero after abort.
+  // #2 #3
   task VerifyAbortReceive(logic [127:0][7:0] data, int Size);
     	automatic logic [7:0] ReadData = 8'b0;
 	wait(uin_hdlc.Rx_AbortSignal);
@@ -89,6 +90,7 @@ program testPr_hdlc(
 
   // VerifyNormalReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer contains correct data.
+  // #1 #3
   task VerifyNormalReceive(logic [127:0][7:0] data, int Size);
 	logic [7:0] ReadData;
 	wait(uin_hdlc.Rx_Ready);
@@ -119,15 +121,6 @@ program testPr_hdlc(
 		TbErrorCnt++;
 	end
 
-/*	// !Rx_FCSerr
-	assert (!(ReadData & (1 << )))
-		$display("PASS! No CRC error"); 
-	else begin
-		$display("ERROR! CRC error");
-		TbErrorCnt++;
-	end
-*/
-
 	// !Rx_Overflow
 	assert (!(ReadData & (1 << 4)))
 		$display("PASS! No overflow"); 
@@ -148,8 +141,9 @@ program testPr_hdlc(
 
   endtask
 
-  // VerifyNormalReceive should verify correct value in the Rx status/control
+  // VerifyOverflowReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer contains correct data.
+  // #3
   task VerifyOverflowReceive(logic [127:0][7:0] data, int Size);
 	logic [7:0] ReadData;
 	wait(uin_hdlc.Rx_Ready);
