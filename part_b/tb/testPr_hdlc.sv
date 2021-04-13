@@ -134,7 +134,7 @@ program testPr_hdlc(
 		assert (data[i] == ReadData)
 			$display("PASS! data in Rx buffer correct");
 		else begin
-			$display("ERROR! wrong data in Rx buffer position %d", i);
+			$display("ERROR! wrong data in Rx buffer position %d. Found %h, should be %h", i, data[i], ReadData);
 			TbErrorCnt++;
 		end
 	end
@@ -195,15 +195,6 @@ program testPr_hdlc(
   automatic logic[15:0] fcs = 0;
   automatic logic[16:0] temp = 0;
   automatic logic[15:0] crc = {data[Size+1], data[Size]};
-
-/*
-  for (int i = 0; i < Size; i++) begin
-    for (int j = 0; j < 8; j++) begin
-      int k = 7 - j;
-      temp = P ^ {fcs, data[i][k]};
-      fcs = temp[15:0];
-    end
-  end*/
 
   for (int i = 0; i < Size; i++) begin
     for (int j = 0; j < 8; j++) begin
