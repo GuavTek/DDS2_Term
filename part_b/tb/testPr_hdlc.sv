@@ -129,6 +129,14 @@ program testPr_hdlc(
 		TbErrorCnt++;
 	end
 
+  ReadAddress(3'h4, ReadData);
+
+  assert (ReadData == Size)
+    $display("PASS! Correct frame size");
+  else begin
+    $display("ERROR! Wrong frame size");
+  end
+
 	for (int i = 0; i < Size; i++) begin
 		ReadAddress(3'h3, ReadData);
 		assert (data[i] == ReadData)
