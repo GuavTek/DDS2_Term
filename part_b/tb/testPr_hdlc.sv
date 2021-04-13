@@ -135,6 +135,7 @@ program testPr_hdlc(
     $display("PASS! Correct frame size");
   else begin
     $display("ERROR! Wrong frame size");
+    TbErrorCnt++;
   end
 
 	for (int i = 0; i < Size; i++) begin
