@@ -35,14 +35,22 @@ module assertions_hdlc (
    *  Verify correct Rx_FlagDetect behavior  *
    *******************************************/
 
-  sequence Rx_flag;
-    !Rx ##1 Rx[*6] ##1 !Rx;
+  sequence StartStop_pattern(sig1);
+    !sig1 ##1 sig1[*6] ##1 !sig1;
+  endsequence
+
+  sequence Abort_pattern(sig1);
+    !sig1 ##1 sig1[*7];
+  endsequence
+
+  sequence Idle_pattern(sig1);
+    sig1[*8];
   endsequence
 
   // #?
   // Check if flag sequence is detected
   property RX_FlagDetect;
-    @(posedge Clk) Rx_flag |-> ##2 Rx_FlagDetect;
+    @(posedge Clk) StartStop_pattern(Rx) |-> ##2 Rx_FlagDetect;
   endproperty
 
   RX_FlagDetect_Assert : assert property (RX_FlagDetect) begin
