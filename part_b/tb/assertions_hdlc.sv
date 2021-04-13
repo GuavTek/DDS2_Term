@@ -61,6 +61,19 @@ module assertions_hdlc (
     ErrCntAssertions++; 
   end
 
+  // #5
+  // Check if flag sequence is generated
+  property TX_FlagGen;
+    StartStop_pattern(Tx) |-> 1;
+  endproperty
+
+  TX_FlagGen_Assert : assert property (@(posedge Clk) TX_FlagGen) begin
+    $display("PASS: Flag Generated");
+  end else begin 
+    $error("No flag?! impossible..."); 
+    ErrCntAssertions++; 
+  end
+
   /********************************************
    *  Verify correct Rx_AbortSignal behavior  *
    ********************************************/
