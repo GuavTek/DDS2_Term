@@ -87,7 +87,7 @@ module assertions_hdlc (
     $display("PASS! End of frame is generated");
   else begin
     $display("ERROR! No end of frame signal");
-    TbErrorCnt++;
+    ErrCntAssertions++;
   end
 
 endmodule
