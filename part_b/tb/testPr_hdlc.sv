@@ -32,10 +32,17 @@ program testPr_hdlc(
 
   // VerifyAbortReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer is zero after abort.
-  // #2 #3
+  // #2 #3 #12
   task VerifyAbortReceive(logic [127:0][7:0] data, int Size);
     	automatic logic [7:0] ReadData = 8'b0;
 	wait(uin_hdlc.Rx_AbortSignal);
+
+  assert (uin_hdlc.Rx_EoF)
+    $display("PASS! End of frame is generated");
+  else begin
+    $display("ERROR! No end of frame signal");
+    TbErrorCnt++;
+  end
 
 	ReadAddress(3'h2, ReadData);
 
@@ -90,11 +97,18 @@ program testPr_hdlc(
 
   // VerifyNormalReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer contains correct data.
-  // #1 #3
+  // #1 #3 #12
   task VerifyNormalReceive(logic [127:0][7:0] data, int Size);
 	logic [7:0] ReadData;
 	wait(uin_hdlc.Rx_Ready);
 	
+  assert (uin_hdlc.Rx_EoF)
+    $display("PASS! End of frame is generated");
+  else begin
+    $display("ERROR! No end of frame signal");
+    TbErrorCnt++;
+  end
+
 	ReadAddress(3'h2, ReadData);
 
 	// Rx_Ready
@@ -145,11 +159,18 @@ program testPr_hdlc(
 
   // VerifyOverflowReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer contains correct data.
-  // #3
+  // #3 #12
   task VerifyOverflowReceive(logic [127:0][7:0] data, int Size);
 	logic [7:0] ReadData;
 	wait(uin_hdlc.Rx_Ready);
 	
+  assert (uin_hdlc.Rx_EoF)
+    $display("PASS! End of frame is generated");
+  else begin
+    $display("ERROR! No end of frame signal");
+    TbErrorCnt++;
+  end
+
 	// Read RX_SC
 	ReadAddress(3'h2, ReadData);
 	
@@ -184,8 +205,6 @@ program testPr_hdlc(
 		$display("ERROR! Abort signal asserted");
 		TbErrorCnt++;
 	end
-  
-
   endtask
 
   // #11
@@ -208,10 +227,18 @@ program testPr_hdlc(
 
   assert (fcs == 0) 
     $display("PASS! Correct CRC generated");
-  else 
-    $display("ERROR! CRC bytes don't match. Got %4h", fcs);  
-
+  else begin
+    $display("ERROR! CRC bytes don't match. Got %4h", fcs);
+    TbErrorCnt++;  
+  end
   endtask
+
+  // #4
+  // Tx normal verification
+
+  // #9
+  // Tx abort verification
+
 
 
   /****************************************************************************
