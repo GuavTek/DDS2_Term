@@ -83,7 +83,7 @@ module assertions_hdlc (
     $fell(Rx_ValidFrame) |=> Rx_EoF;
   endproperty
 
-  RX_EOF_Assert: assert property (@(posedge Clk) disable iff(Rst) RX_EOF)
+  RX_EOF_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_EOF)
     $display("PASS! End of frame is generated");
   else begin
     $display("ERROR! No end of frame signal");
