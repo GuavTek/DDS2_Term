@@ -129,7 +129,7 @@ program testPr_hdlc(
 		TbErrorCnt++;
 	end
 
-	for (int i = 0; i < Size; i++) begin
+	for (int i = 0; i < Size+2; i++) begin
 		ReadAddress(3'h3, ReadData);
 		assert (data[i] == ReadData)
 			$display("PASS! data in Rx buffer correct");
