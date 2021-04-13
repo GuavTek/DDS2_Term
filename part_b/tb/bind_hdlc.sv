@@ -18,9 +18,11 @@ module bind_hdlc ();
     .Rx_Overflow      (uin_hdlc.Rx_Overflow),
     .Rx_WrBuff        (uin_hdlc.Rx_WrBuff),
     .Rx_EoF           (uin_hdlc.Rx_EoF),
+    .Rx_NewByte       (uin_hdlc.Rx_NewByte),
     .Tx               (uin_hdlc.Tx),
     .Tx_ValidFrame    (uin_hdlc.Tx_ValidFrame),
-    .Tx_AbortFrame    (uin_hdlc.Tx_AbortFrame)
+    .Tx_AbortFrame    (uin_hdlc.Tx_AbortFrame),
+    .Tx_AbortedTrans  (uin_hdlc.Tx_AbortedTrans)
   );
 
 endmodule

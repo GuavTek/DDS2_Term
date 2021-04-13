@@ -26,9 +26,11 @@ module assertions_hdlc (
   input  logic Rx_AbortSignal,
   input  logic Rx_Overflow,
   input  logic Rx_WrBuff,
+  input  logic Rx_NewByte,
   input  logic Tx,
   input  logic Tx_AbortFrame,
-  input  logic Tx_ValidFrame
+  input  logic Tx_ValidFrame,
+  input  logic Tx_AbortedTrans
 );
 
   initial begin
@@ -41,14 +43,6 @@ module assertions_hdlc (
 
   sequence StartStop_pattern(sig1);
     !sig1 ##1 sig1[*6] ##1 !sig1;
-  endsequence
-
-  sequence Abort_pattern(sig1);
-    !sig1 ##1 sig1[*7];
-  endsequence
-
-  sequence Idle_pattern(sig1);
-    sig1[*8];
   endsequence
 
   // #?
@@ -105,5 +99,43 @@ module assertions_hdlc (
     $display("ERROR! No end of frame signal");
     ErrCntAssertions++;
   end
+
+  // #6
+  // Rx zero removal
+
+
+  // Tx zero insertion
+
+
+  sequence Idle_pattern(sig1);
+    sig1[*8];
+  endsequence
+
+  // #7
+  // Rx idle pattern check
+
+
+  // Tx idle pattern generation
+
+
+  
+  sequence Abort_pattern(sig1);
+    !sig1 ##1 sig1[*7];
+  endsequence
+
+  // #8
+  // Rx abort pattern check
+
+
+  // Tx abort pattern generation
+
+
+  // #13
+  // Rx_Overflow, maybe count Rx_NewBytes
+
+
+  // #16??
+
+
 
 endmodule

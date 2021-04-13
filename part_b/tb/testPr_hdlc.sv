@@ -90,7 +90,7 @@ program testPr_hdlc(
 
   // VerifyNormalReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer contains correct data.
-  // #1 #3
+  // #1 #3 #14 #15??
   task VerifyNormalReceive(logic [127:0][7:0] data, int Size);
 	logic [7:0] ReadData;
 	wait(uin_hdlc.Rx_Ready);
@@ -218,7 +218,10 @@ program testPr_hdlc(
   // #9
   // Tx abort verification
 
+  // #18
+  // Tx overflow
 
+  // #17
 
   /****************************************************************************
    *                                                                          *
