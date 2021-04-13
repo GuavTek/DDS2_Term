@@ -132,7 +132,16 @@ module assertions_hdlc (
 
   // #13
   // Rx_Overflow, maybe count Rx_NewBytes
+  property RX_ovf;
+    (!Rx_ValidFrame && StartStop_pattern(Rx)) ##1 (Rx_NewByte[->126] and !StartStop_pattern(Rx)) |=> Rx_Overflow;
+  endproperty
 
+  RX_ovf_Assert: assert property (@(posedge Clk) RX_ovf)
+    $display("PASS! overflow signal is set");
+  else begin
+    $display("ERROR! Missing overflow signal");
+    ErrCntAssertions++;
+  end
 
   // #16??
 
