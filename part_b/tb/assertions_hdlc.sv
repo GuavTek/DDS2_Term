@@ -20,6 +20,7 @@ module assertions_hdlc (
   input  logic Rst,
   input  logic Rx,
   input  logic Rx_FlagDetect,
+  input  logic Rx_EoF,
   input  logic Rx_ValidFrame,
   input  logic Rx_AbortDetect,
   input  logic Rx_AbortSignal,
@@ -50,10 +51,10 @@ module assertions_hdlc (
   // #?
   // Check if flag sequence is detected
   property RX_FlagDetect;
-    @(posedge Clk) StartStop_pattern(Rx) |-> ##2 Rx_FlagDetect;
+    StartStop_pattern(Rx) |-> ##2 Rx_FlagDetect;
   endproperty
 
-  RX_FlagDetect_Assert : assert property (RX_FlagDetect) begin
+  RX_FlagDetect_Assert : assert property (@(posedge Clk) RX_FlagDetect) begin
     $display("PASS: Flag detect");
   end else begin 
     $error("Flag sequence did not generate FlagDetect"); 
@@ -66,14 +67,27 @@ module assertions_hdlc (
   // #10
   //If abort is detected during valid frame. then abort signal should go high
   property RX_AbortSignal;
-    @(posedge Clk) (Rx_AbortDetect && Rx_ValidFrame) |=> Rx_AbortSignal;
+    (Rx_AbortDetect && Rx_ValidFrame) |=> Rx_AbortSignal;
   endproperty
 
-  RX_AbortSignal_Assert : assert property (RX_AbortSignal) begin
+  RX_AbortSignal_Assert : assert property (@(posedge Clk) RX_AbortSignal) begin
     $display("PASS: Abort signal");
   end else begin 
     $error("AbortSignal did not go high after AbortDetect during validframe"); 
     ErrCntAssertions++; 
+  end
+
+  // #12
+  // End of frame detect
+  property RX_EOF;
+    (Rx_FlagDetect && Rx_ValidFrame) |-> ##5 Rx_EoF;
+  endproperty
+
+  RX_EOF_Assert: assert property (@(posedge Clk) RX_EOF)
+    $display("PASS! End of frame is generated");
+  else begin
+    $display("ERROR! No end of frame signal");
+    TbErrorCnt++;
   end
 
 endmodule
