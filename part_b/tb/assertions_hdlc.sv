@@ -131,7 +131,7 @@ module assertions_hdlc (
 
 
   // #13
-  // Rx_Overflow, maybe count Rx_NewBytes
+  // Rx_Overflow
   property RX_ovf;
     Rx_FlagDetect ##0 !Rx_ValidFrame ##1 (Rx_NewByte[->129] within Rx_FlagDetect[->1]) |=> Rx_Overflow;
   endproperty
