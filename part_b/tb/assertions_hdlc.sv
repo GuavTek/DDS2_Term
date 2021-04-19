@@ -143,8 +143,6 @@ module assertions_hdlc (
     ErrCntAssertions++;
   end
 
-  // #16??
-
 
 
 endmodule

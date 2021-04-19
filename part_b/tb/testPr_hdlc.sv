@@ -35,56 +35,56 @@ program testPr_hdlc(
   // #2 #3
   task VerifyAbortReceive(logic [127:0][7:0] data, int Size);
     	automatic logic [7:0] ReadData = 8'b0;
-	wait(uin_hdlc.Rx_AbortSignal);
+	  wait(uin_hdlc.Rx_AbortSignal);
 
-	ReadAddress(3'h2, ReadData);
+	  ReadAddress(3'h2, ReadData);
 
-	// Rx_AbortSignal
-	assert (ReadData & (1 << 3))
-		$display("PASS! Abortsignal was set"); 
-	else begin
-		$display("ERROR! Abortsignal was not set");
-		TbErrorCnt++;
-	end
+	  // Rx_AbortSignal
+    assert (ReadData & (1 << 3))
+      $display("PASS! Abortsignal was set"); 
+    else begin
+      $display("ERROR! Abortsignal was not set");
+      TbErrorCnt++;
+    end
 
-	// !Rx_FrameError
-	assert (!(ReadData & (1 << 2)))
-		$display("PASS! No frame errors");
-	else begin
-		$display("ERROR! Frame error flag set");
-		TbErrorCnt++;
-	end
+    // !Rx_FrameError
+    assert (!(ReadData & (1 << 2)))
+      $display("PASS! No frame errors");
+    else begin
+      $display("ERROR! Frame error flag set");
+      TbErrorCnt++;
+    end
 
-	// !Rx_Overflow
-	assert (!(ReadData & (1 << 4)))
-		$display("PASS! No overflow flag");
-	else begin
-		$display("ERROR! Overflow flag set");
-		TbErrorCnt++;
-	end
+    // !Rx_Overflow
+    assert (!(ReadData & (1 << 4)))
+      $display("PASS! No overflow flag");
+    else begin
+      $display("ERROR! Overflow flag set");
+      TbErrorCnt++;
+    end
 
-	// !Rx_Ready
-	assert (!(ReadData & (1 << 0)))
-		$display("PASS! Rx buffer has no data");
-	else begin
-		$display("ERROR! Rx buffer has data");
-		TbErrorCnt++;
-	end
+    // !Rx_Ready
+    assert (!(ReadData & (1 << 0)))
+      $display("PASS! Rx buffer has no data");
+    else begin
+      $display("ERROR! Rx buffer has data");
+      TbErrorCnt++;
+    end
 
 
-    	for (int i = 0; i < 128; i++) begin
-		ReadAddress(3'h3, ReadData);
-		if (ReadData != 8'b0) begin
-			break;
-		end
-	end
+        for (int i = 0; i < 128; i++) begin
+      ReadAddress(3'h3, ReadData);
+      if (ReadData != 8'b0) begin
+        break;
+      end
+    end
 
-	assert (ReadData == 8'b0) 
-		$display("PASS! Data buffer is empty");
-	else begin
-		$display("ERROR! Data buffer is not empty, byte was %h", ReadData);
-		TbErrorCnt++;
-	end
+    assert (ReadData == 8'b0) 
+      $display("PASS! Data buffer is empty");
+    else begin
+      $display("ERROR! Data buffer is not empty, byte was %h", ReadData);
+      TbErrorCnt++;
+    end
 
   endtask
 
@@ -92,63 +92,63 @@ program testPr_hdlc(
   // register, and that the Rx data buffer contains correct data.
   // #1 #3 #14 #15??
   task VerifyNormalReceive(logic [127:0][7:0] data, int Size);
-	logic [7:0] ReadData;
-	wait(uin_hdlc.Rx_Ready);
+    logic [7:0] ReadData;
+    wait(uin_hdlc.Rx_Ready);
 
-	ReadAddress(3'h2, ReadData);
+    ReadAddress(3'h2, ReadData);
 
-	// Rx_Ready
-	assert (ReadData & (1 << 0))
-		$display("PASS! Rx buffer is ready");
-	else begin
-		$display("ERROR! Rx buffer is not ready?!?");
-		TbErrorCnt++;
-	end
+    // Rx_Ready
+    assert (ReadData & (1 << 0))
+      $display("PASS! Rx buffer is ready");
+    else begin
+      $display("ERROR! Rx buffer is not ready?!?");
+      TbErrorCnt++;
+    end
 
-	// !Rx_FrameError
-	assert (!(ReadData & (1 << 2)))
-		$display("PASS! No frame error"); 
-	else begin
-		 $display("ERROR! FrameError detected");
-		TbErrorCnt++;
-	end
+    // !Rx_FrameError
+    assert (!(ReadData & (1 << 2)))
+      $display("PASS! No frame error"); 
+    else begin
+      $display("ERROR! FrameError detected");
+      TbErrorCnt++;
+    end
 
-	// !Rx_AbortSignal
-	assert (!(ReadData & (1 << 3)))
-		$display("PASS! Abort flag not set");
-	else begin
-		$display("ERROR! Abort flag set");
-		TbErrorCnt++;
-	end
+    // !Rx_AbortSignal
+    assert (!(ReadData & (1 << 3)))
+      $display("PASS! Abort flag not set");
+    else begin
+      $display("ERROR! Abort flag set");
+      TbErrorCnt++;
+    end
 
-	// !Rx_Overflow
-	assert (!(ReadData & (1 << 4)))
-		$display("PASS! No overflow"); 
-	else begin
-		$display("ERROR! Data overflew");
-		TbErrorCnt++;
-	end
+    // !Rx_Overflow
+    assert (!(ReadData & (1 << 4)))
+      $display("PASS! No overflow"); 
+    else begin
+      $display("ERROR! Data overflew");
+      TbErrorCnt++;
+    end
 
-  ReadAddress(3'h4, ReadData);
+    ReadAddress(3'h4, ReadData);
 
-  assert (ReadData == Size)
-    $display("PASS! Correct frame size");
-  else begin
-    $display("ERROR! Wrong frame size");
-    TbErrorCnt++;
-  end
+    assert (ReadData == Size)
+      $display("PASS! Correct frame size");
+    else begin
+      $display("ERROR! Wrong frame size");
+      TbErrorCnt++;
+    end
 
-	for (int i = 0; i < Size; i++) begin
-		ReadAddress(3'h3, ReadData);
-		assert (data[i] == ReadData)
-			$display("PASS! data in Rx buffer correct");
-		else begin
-			$display("ERROR! wrong data in Rx buffer position %d. Found %h, should be %h", i, ReadData, data[i]);
-			TbErrorCnt++;
-		end
-	end
+    for (int i = 0; i < Size; i++) begin
+      ReadAddress(3'h3, ReadData);
+      assert (data[i] == ReadData)
+        $display("PASS! data in Rx buffer correct");
+      else begin
+        $display("ERROR! wrong data in Rx buffer position %d. Found %h, should be %h", i, ReadData, data[i]);
+        TbErrorCnt++;
+      end
+    end
 
-  VerifyCRC(data, Size);
+    VerifyCRC(data, Size);
 
   endtask
 
@@ -156,46 +156,46 @@ program testPr_hdlc(
   // register, and that the Rx data buffer contains correct data.
   // #3
   task VerifyOverflowReceive(logic [127:0][7:0] data, int Size);
-	logic [7:0] ReadData;
-	wait(uin_hdlc.Rx_Ready);
+    logic [7:0] ReadData;
+    wait(uin_hdlc.Rx_Ready);
 
-	// Read RX_SC
-	ReadAddress(3'h2, ReadData);
-	
-	// Rx_Overflow
-	assert (ReadData & (1 << 4))
-		$display("PASS! Overflow flag set");
-	else begin
-		$display("ERROR! Overflow flag not set");
-		TbErrorCnt++;
-	end
+    // Read RX_SC
+    ReadAddress(3'h2, ReadData);
+    
+    // Rx_Overflow
+    assert (ReadData & (1 << 4))
+      $display("PASS! Overflow flag set");
+    else begin
+      $display("ERROR! Overflow flag not set");
+      TbErrorCnt++;
+    end
 
-	// Rx_Ready
-	assert (ReadData & (1 << 0))
-		$display("PASS! Buffer has data to read");
-	else begin
-		$display("ERROR! Buffer has no data");
-		TbErrorCnt++;
-	end
-	
-	// !Rx_FrameError
-	assert (!(ReadData & (1 << 2)))
-		$display("PASS! No frame errors");
-	else begin
-		$display("ERROR! Frame error detected");
-		TbErrorCnt++;
-	end
+    // Rx_Ready
+    assert (ReadData & (1 << 0))
+      $display("PASS! Buffer has data to read");
+    else begin
+      $display("ERROR! Buffer has no data");
+      TbErrorCnt++;
+    end
+    
+    // !Rx_FrameError
+    assert (!(ReadData & (1 << 2)))
+      $display("PASS! No frame errors");
+    else begin
+      $display("ERROR! Frame error detected");
+      TbErrorCnt++;
+    end
 
-	// !Rx_AbortSignal
-	assert (!(ReadData & (1 << 3)))
-		$display("PASS! No abort");
-	else begin
-		$display("ERROR! Abort signal asserted");
-		TbErrorCnt++;
-	end
+    // !Rx_AbortSignal
+    assert (!(ReadData & (1 << 3)))
+      $display("PASS! No abort");
+    else begin
+      $display("ERROR! Abort signal asserted");
+      TbErrorCnt++;
+    end
   endtask
 
-    // #16
+  // #16
   // Rx frame error
   task VerifyFrameErrorReceive (logic [127:0][7:0] data, int Size);
     
@@ -482,7 +482,6 @@ program testPr_hdlc(
       WriteAddress(3'h1, 8'h66);
       WriteAddress(3'h1, 8'h7f);
       WriteAddress(3'h1, 8'hb0);
-      VerifyOverflowSend(SendData, Size);
     end else begin
       //Start Transmission
       WriteAddress(3'h0, 8'h02);
@@ -495,8 +494,10 @@ program testPr_hdlc(
       repeat(32)
         @(posedge uin_hdlc.Clk);        // Let transmission start
       WriteAddress(3'h0, 8'h04);        // Set abort signal
-      VerifyAbortSend(SendData, Size);  // Run asserts
-    end else if(!Overflow) begin
+      VerifyAbortSend(SendData, Size);  // Run assertions
+    end else if(Overflow) begin
+      VerifyOverflowSend(SendData, Size);
+    end else begin
       VerifyNormalSend(SendData, Size);
     end
 
