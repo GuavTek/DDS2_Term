@@ -421,6 +421,10 @@ program testPr_hdlc(
       OverflowData[1] = 8'hBB;
       OverflowData[2] = 8'hCC;
       MakeRxStimulus(OverflowData, 3);
+    end 
+
+    if(NonByteAligned) begin
+      // Do something
     end
 
     if(Abort) begin
