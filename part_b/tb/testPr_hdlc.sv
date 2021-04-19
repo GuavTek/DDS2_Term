@@ -195,6 +195,12 @@ program testPr_hdlc(
 	end
   endtask
 
+    // #16
+  // Rx frame error
+  task VerifyFrameErrorReceive (logic [127:0][7:0] data, int Size);
+    
+  endtask //VerifyFrameErrorReceive
+
   // #11
   // CRC verification
   task VerifyCRC(logic [127:0][7:0] data, int Size);
@@ -223,12 +229,24 @@ program testPr_hdlc(
 
   // #4
   // Tx normal verification
+  task VerifyNormalSend (logic [127:0][7:0] data, int Size);
+	logic [7:0] ReadData;
+    
+  endtask //VerifyNormalSend
 
   // #9
   // Tx abort verification
+  task VerifyAbortSend (logic [127:0][7:0] data, int Size);
+	logic [7:0] ReadData;
+  
+  endtask //VerifyAbortSend
+
 
   // #18
   // Tx overflow
+  task VerifyOverflowSend (logic [127:0][7:0] data, int Size);
+    
+  endtask //VerifyOverflowSend
 
   // #17
 
@@ -249,12 +267,14 @@ program testPr_hdlc(
     Receive( 10, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 40, 1, 0, 0, 0, 0, 0); //Abort
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
-    Receive( 45, 0, 0, 0, 0, 0, 0); //Normal
     Receive(126, 0, 0, 0, 0, 0, 0); //Normal
     Receive(122, 1, 0, 0, 0, 0, 0); //Abort
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive( 25, 0, 0, 0, 0, 0, 0); //Normal
-    Receive( 47, 0, 0, 0, 0, 0, 0); //Normal
+    Receive( 69, 0, 1, 0, 0, 0, 0); //FCSerr
+    Receive( 30, 0, 0, 1, 0, 0, 0); //NonByteAligned
+    
+    
 
     $display("*************************************************************");
     $display("%t - Finishing Test Program", $time);
@@ -419,8 +439,66 @@ program testPr_hdlc(
       VerifyAbortReceive(ReceiveData, Size);
     else if(Overflow)
       VerifyOverflowReceive(ReceiveData, Size);
+    else if(FCSerr || NonByteAligned);
+      VerifyFrameErrorReceive(ReceiveData, Size);
     else if(!SkipRead)
       VerifyNormalReceive(ReceiveData, Size);
+
+    #5000ns;
+  endtask
+
+  task Send(int Size, int Abort, int Overflow);
+    logic [127:0][7:0] SendData;
+    logic       [15:0] FCSBytes;
+    logic   [2:0][7:0] OverflowData;
+    string msg;
+    if(Abort)
+      msg = "- Abort";
+    else if(Overflow)
+      msg = "- Overflow";
+    else
+      msg = "- Normal";
+    $display("*************************************************************");
+    $display("%t - Starting task Send %s", $time, msg);
+    $display("*************************************************************");
+
+    for (int i = 0; i < Size; i++) begin
+      SendData[i] = $urandom;
+    end
+    SendData[Size]   = '0;
+    SendData[Size+1] = '0;
+
+    //Calculate FCS bits;
+    GenerateFCSBytes(SendData, Size, FCSBytes);
+    SendData[Size]   = FCSBytes[7:0];
+    SendData[Size+1] = FCSBytes[15:8];
+
+    //Write TX buffer
+    for(int i = 0; i < Size; i++){
+      WriteAddress(3'h1, SendData[i]);
+    }
+
+    if(Overflow) begin
+      WriteAddress(3'h1, 8'h66);
+      WriteAddress(3'h1, 8'h7f);
+      WriteAddress(3'h1, 8'hb0);
+      VerifyOverflowSend(SendData, Size);
+    end else begin
+      //Start Transmission
+      WriteAddress(3'h0, 8'h02);
+
+      repeat(8)
+        @(posedge uin_hdlc.Clk);
+    end
+
+    if(Abort) begin
+      repeat(32)
+        @(posedge uin_hdlc.Clk);        // Let transmission start
+      WriteAddress(3'h0, 8'h04);        // Set abort signal
+      VerifyAbortSend(SendData, Size);  // Run asserts
+    end else if(!Overflow) begin
+      VerifyNormalSend(SendData, Size);
+    end
 
     #5000ns;
   endtask
