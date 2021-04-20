@@ -24,12 +24,6 @@ program testPr_hdlc(
   
   int TbErrorCnt;
 
-  /****************************************************************************
-   *                                                                          *
-   *                               Student code                               *
-   *                                                                          *
-   ****************************************************************************/
-
   // VerifyAbortReceive should verify correct value in the Rx status/control
   // register, and that the Rx data buffer is zero after abort.
   // #2 #3
@@ -485,6 +479,8 @@ program testPr_hdlc(
     $display("*************************************************************");
     $display("%t - Running corner case: short message immediately after transmitt", $time);
     $display("*************************************************************");
+    // Sending 9 bytes or less can collide with the FCS bytes and stop flag
+    // of the previous message
     Send(  8, 0, 0);                 //Normal
     
     

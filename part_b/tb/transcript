@@ -1,0 +1,651 @@
+# vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
+# Start time: 19:52:33 on Apr 20,2021
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "RxBuff(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxController(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "RxController(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "TxBuff(fast)".
+# //  Questa Sim-64
+# //  Version 10.5c linux_x86_64 Jul 20 2016
+# //
+# //  Copyright 1991-2016 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.test_hdlc(fast)
+# Loading work.in_hdlc(fast)
+# Loading work.Hdlc(fast)
+# Loading work.AddressIF(fast)
+# Loading work.TxController(fast)
+# Loading work.TxBuff(fast)
+# Loading work.TxFCS(fast)
+# Loading work.TxChannel(fast)
+# Loading work.RxController(fast)
+# Loading work.RxBuff(fast)
+# Loading work.RxFCS(fast)
+# Loading work.RxChannel(fast)
+# Loading work.testPr_hdlc(fast)
+# Loading work.assertions_hdlc(fast)
+# Loading work.bind_hdlc(fast)
+# ** Warning: (vsim-3839) ./test_hdlc.sv(51): Variable '/test_hdlc/uin_hdlc/Tx_Done', driven via a port connection, is multiply driven. See ./test_hdlc.sv(63).
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc File: ./test_hdlc.sv
+# log -r *
+#  run -all
+# *************************************************************
+#                    0 - Starting Test Program
+# *************************************************************
+# *************************************************************
+#                 1000 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! End of frame is generated
+# PASS! Rx buffer is ready
+# PASS! No frame error
+# PASS! Abort flag not set
+# PASS! No overflow
+# PASS! Correct frame size
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! Correct FCS bytes generated
+# *************************************************************
+#                79250 - Starting task Receive - Abort
+# *************************************************************
+# PASS: Flag detect
+# PASS! Abort flag detected
+# PASS: Abort signal
+# PASS! End of frame is generated
+# PASS! Abortsignal was set
+# PASS! No frame errors
+# PASS! No overflow flag
+# PASS! Rx buffer has no data
+# PASS! Data buffer is empty
+# *************************************************************
+#               396250 - Starting task Receive - Overflow
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! overflow signal is set
+# PASS! End of frame is generated
+# PASS! Overflow flag set
+# PASS! Buffer has data to read
+# PASS! No frame errors
+# PASS! No abort
+# *************************************************************
+#               950250 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! End of frame is generated
+# PASS! Rx buffer is ready
+# PASS! No frame error
+# PASS! Abort flag not set
+# PASS! No overflow
+# PASS! Correct frame size
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! Correct FCS bytes generated
+# *************************************************************
+#              1615750 - Starting task Receive - Abort
+# *************************************************************
+# PASS: Flag detect
+# PASS! Abort flag detected
+# PASS: Abort signal
+# PASS! End of frame is generated
+# PASS! Abortsignal was set
+# PASS! No frame errors
+# PASS! No overflow flag
+# PASS! Rx buffer has no data
+# PASS! Data buffer is empty
+# *************************************************************
+#              2265750 - Starting task Receive - Overflow
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! overflow signal is set
+# PASS! End of frame is generated
+# PASS! Overflow flag set
+# PASS! Buffer has data to read
+# PASS! No frame errors
+# PASS! No abort
+# *************************************************************
+#              2817250 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! End of frame is generated
+# PASS! Rx buffer is ready
+# PASS! No frame error
+# PASS! Abort flag not set
+# PASS! No overflow
+# PASS! Correct frame size
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! Correct FCS bytes generated
+# *************************************************************
+#              2971750 - Starting task Receive - FCS error
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! End of frame is generated
+# PASS! Rx_Overflow flag not set
+# PASS! Rx_AbortSignal flag not set
+# PASS! Rx_FrameError flag is set
+# PASS! Rx_Ready flag not set
+# *************************************************************
+#              3281750 - Starting task Receive - Non-byte aligned
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! End of frame is generated
+# PASS! Rx_Overflow flag not set
+# PASS! Rx_AbortSignal flag not set
+# PASS! Rx_FrameError flag is set
+# PASS! Rx_Ready flag not set
+# *************************************************************
+#              3430750 - Starting task Receive - Non-byte aligned
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! End of frame is generated
+# PASS! Rx_Overflow flag not set
+# PASS! Rx_AbortSignal flag not set
+# PASS! Rx_FrameError flag is set
+# PASS! Rx_Ready flag not set
+# *************************************************************
+#              3775750 - Starting task Receive - Non-byte aligned
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! End of frame is generated
+# PASS! Rx_Overflow flag not set
+# PASS! Rx_AbortSignal flag not set
+# PASS! Rx_FrameError flag is set
+# PASS! Rx_Ready flag not set
+# *************************************************************
+#              3843250 - Starting task Send - Normal
+# *************************************************************
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS: Flag Generated
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! CRC bytes correct
+# PASS! TX_Done flag asserted
+# PASS! TX_AbortedTrans flag not asserted
+# PASS! TX_Full flag not asserted
+# PASS! Correct FCS bytes generated
+# *************************************************************
+#              4075750 - Starting task Send - Abort
+# *************************************************************
+# PASS: Flag Generated
+# PASS: Flag Generated
+# PASS! TX_AbortedTrans flag asserted
+# PASS! Abort flag generated
+# *************************************************************
+#              4432250 - Starting task Send - Normal
+# *************************************************************
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS: Flag Generated
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! CRC bytes correct
+# PASS! TX_Done flag asserted
+# PASS! TX_AbortedTrans flag not asserted
+# PASS! TX_Full flag not asserted
+# PASS! Correct FCS bytes generated
+# *************************************************************
+#              5318750 - Starting task Send - Overflow
+# *************************************************************
+# PASS: Flag Generated
+# PASS! TX_Full flag asserted
+# *************************************************************
+#              5968250 - Starting task Send - Normal
+# *************************************************************
+# PASS: Flag Generated
+# PASS: Flag Generated
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS: Flag Generated
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! CRC bytes correct
+# PASS! TX_Done flag asserted
+# PASS! TX_AbortedTrans flag not asserted
+# PASS! TX_Full flag not asserted
+# PASS! Correct FCS bytes generated
+# *************************************************************
+#              7620750 - Running corner case: short message immediately after transmitt
+# *************************************************************
+# *************************************************************
+#              7620750 - Starting task Send - Normal
+# *************************************************************
+# ERROR! wrong data in Tx buffer position           0. Found 00, should be 9f
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# ERROR: No flag Generated
+# PASS: Flag Generated
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# ERROR! CRC bytes are wrong, 0000 was sent instead of 9db4
+# PASS! TX_Done flag asserted
+# PASS! TX_AbortedTrans flag not asserted
+# PASS! TX_Full flag not asserted
+# PASS! Correct FCS bytes generated
+# *************************************************************
+#              7668750 - Finishing Test Program
+# *************************************************************
+# ** Note: $stop    : ./testPr_hdlc.sv(415)
+#    Time: 7668750 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 415
+# Stopped at ./testPr_hdlc.sv line 415
+#  exit
+# *********************************
+# *                               *
+# * 	Assertion Errors: 3	  *
+# *                               *
+# *********************************
+# End time: 19:52:37 on Apr 20,2021, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 1
