@@ -199,7 +199,6 @@ program testPr_hdlc(
   // Rx frame error
   task VerifyFrameErrorReceive (logic [127:0][7:0] data, int Size);
     logic [7:0] ReadData;
-    wait(uin_hdlc.Rx_Ready);
 
     ReadAddress(3'h2, ReadData);
 
@@ -492,7 +491,7 @@ program testPr_hdlc(
     ReceiveData[Size+1] = FCSBytes[15:8];
 
     //Enable FCS
-    if(!Overflow && !NonByteAligned)
+    if(!Overflow && !FCSerr)
       WriteAddress(3'h2, 8'h20);
     else
       WriteAddress(3'h2, 8'h00);
@@ -510,9 +509,10 @@ program testPr_hdlc(
     end 
 
     if(NonByteAligned) begin
-      uin_hdlc.Rx = 1'b0;
-      repeat(NonByteAligned)
+      repeat(NonByteAligned) begin
+        uin_hdlc.Rx = 1'b0;
         @(posedge uin_hdlc.Clk);
+      end
     end
 
     if(Abort) begin
