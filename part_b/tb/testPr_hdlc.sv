@@ -269,7 +269,7 @@ program testPr_hdlc(
       assert (data[i] == uin_hdlc.Tx_DataOutBuff)
         $display("PASS! data in Tx buffer correct");
       else begin
-        $display("ERROR! wrong data in Tx buffer position %d. Found %h, should be %h", i, uin_hdlc.Tx_Data[i], data[i]);
+        $display("ERROR! wrong data in Tx buffer position %d. Found %h, should be %h", i, uin_hdlc.Tx_DataOutBuff, data[i]);
         TbErrorCnt++;
       end
     end
