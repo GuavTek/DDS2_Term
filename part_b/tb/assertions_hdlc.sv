@@ -19,7 +19,6 @@ module assertions_hdlc (
   input  logic Clk,
   input  logic Rst,
   input  logic Rx,
-  input  logic RxD,
   input  logic Rx_FlagDetect,
   input  logic Rx_EoF,
   input  logic Rx_ValidFrame,
@@ -33,8 +32,7 @@ module assertions_hdlc (
   input  logic Tx_AbortFrame,
   input  logic Tx_ValidFrame,
   input  logic Tx_AbortedTrans,
-  input  logic Tx_InitZero,
-  input  logic ZeroDetect
+  input  logic Tx_InitZero
 );
 
   initial begin
@@ -66,13 +64,13 @@ module assertions_hdlc (
   // Check if flag sequence is generated
   // Start-flag has 2 cycle delay, Stop-flag has 1 cycle
   property TX_FlagGen;
-    !$stable(Tx_ValidFrame) ##0 !TX_AbortedTrans |-> ##[1:2] StartStop_pattern(Tx);
+    !$stable(Tx_ValidFrame) |-> ##[1:2] StartStop_pattern(Tx);
   endproperty
 
   TX_FlagGen_Assert : assert property (@(posedge Clk) TX_FlagGen) begin
     $display("PASS: Flag Generated");
   end else begin 
-    $$display("ERROR: No flag Generated"); 
+    $error("ERROR: No flag Generated"); 
     ErrCntAssertions++; 
   end
 
@@ -88,7 +86,7 @@ module assertions_hdlc (
   RX_AbortSignal_Assert : assert property (@(posedge Clk) RX_AbortSignal) begin
     $display("PASS: Abort signal");
   end else begin 
-    $display("AbortSignal did not go high after AbortDetect during validframe"); 
+    $error("AbortSignal did not go high after AbortDetect during validframe"); 
     ErrCntAssertions++; 
   end
 
@@ -108,7 +106,7 @@ module assertions_hdlc (
   // #6
   // Rx zero removal (or start/stop sequence)
   property RX_ZeroRemove;
-    Rx_ValidFrame ##0 RxD[*5] |=> (!RxD ##0 ZeroDetect) or (RxD ##1 !RxD);
+    Rx_ValidFrame ##0 Rx[*5] |=> (!Rx ##0 Rx_StartZeroDetect) or (Rx ##1 !Rx);
   endproperty
 
   RX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_ZeroRemove)
