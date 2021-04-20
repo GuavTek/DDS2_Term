@@ -138,7 +138,7 @@ program testPr_hdlc(
       TbErrorCnt++;
     end
 
-    for (int i = 0; i < Size+2; i++) begin
+    for (int i = 0; i < Size; i++) begin
       ReadAddress(3'h3, ReadData);
       assert (data[i] == ReadData)
         $display("PASS! data in Rx buffer correct");
@@ -223,10 +223,10 @@ program testPr_hdlc(
       TbErrorCnt++;
     end
 
-    assert ((ReadData & (1 << 0)))
-      $display("PASS! Rx_Ready flag is set"); 
+    assert (!(ReadData & (1 << 0)))
+      $display("PASS! Rx_Ready flag not set"); 
     else begin
-      $display("ERROR! Rx_Ready flag not set");
+      $display("ERROR! Rx_Ready flag is set");
       TbErrorCnt++;
     end
 
@@ -490,8 +490,13 @@ program testPr_hdlc(
     ReceiveData[Size]   = FCSBytes[7:0];
     ReceiveData[Size+1] = FCSBytes[15:8];
 
+    if(FCSerr) begin
+      ReceiveData[Size] += 5;
+      ReceiveData[Size+1] -= 8;
+    end
+
     //Enable FCS
-    if(!Overflow && !FCSerr)
+    if(!Overflow && !NonByteAligned)
       WriteAddress(3'h2, 8'h20);
     else
       WriteAddress(3'h2, 8'h00);
