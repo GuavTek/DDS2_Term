@@ -203,7 +203,33 @@ program testPr_hdlc(
 
     ReadAddress(3'h2, ReadData);
 
-    
+    assert (!(ReadData & (1 << 4)))
+      $display("PASS! Rx_Overflow flag not set"); 
+    else begin
+      $display("ERROR! Rx_Overflow flag is set");
+      TbErrorCnt++;
+    end
+
+    assert (!(ReadData & (1 << 3)))
+      $display("PASS! Rx_AbortSignal flag not set"); 
+    else begin
+      $display("ERROR! Rx_AbortSignal flag is set");
+      TbErrorCnt++;
+    end
+
+    assert ((ReadData & (1 << 2)))
+      $display("PASS! Rx_FrameError flag is set"); 
+    else begin
+      $display("ERROR! Rx_FrameError flag not set");
+      TbErrorCnt++;
+    end
+
+    assert ((ReadData & (1 << 0)))
+      $display("PASS! Rx_Ready flag is set"); 
+    else begin
+      $display("ERROR! Rx_Ready flag not set");
+      TbErrorCnt++;
+    end
 
   endtask //VerifyFrameErrorReceive
 
