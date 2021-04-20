@@ -238,7 +238,19 @@ program testPr_hdlc(
   // Tx abort verification
   task VerifyAbortSend (logic [127:0][7:0] data, int Size);
 	  logic [7:0] ReadData;
-  
+
+    for(int i = 0; i < 32; i++) begin
+      ReadAddress(3'h0, ReadData);
+      if (ReadData & (1 << 3))
+        break;
+    end
+
+    assert(ReadData & (1 << 3))
+      $display("PASS! TX_AbortedTrans flag asserted");
+    else begin
+      $display("ERROR! Missing TX_AbortedTrans flag");
+      TbErrorCnt++;
+    end
   endtask //VerifyAbortSend
 
 
