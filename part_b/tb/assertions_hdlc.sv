@@ -117,7 +117,7 @@ module assertions_hdlc (
 
   // Tx zero insertion
   property TX_ZeroInsert;
-    StartStop_pattern(Tx) ##0 Tx_ValidFrame |=> !(##[*] Tx[*6]) throughout (!Tx_ValidFrame[->1]) 
+    StartStop_pattern(Tx) ##0 Tx_ValidFrame |=> (!Tx_ValidFrame[->1]) within (##[*] Tx[*6]);  
   endproperty
 
   TX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) TX_ZeroInsert)
