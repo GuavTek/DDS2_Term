@@ -235,7 +235,7 @@ program testPr_hdlc(
   // #11
   // CRC verification
 	
-//CRC_Check	
+  //CRC_Check	
   task VerifyCRC(logic [127:0][7:0] data, int Size);
     automatic logic[16:0] P = 17'h14003; // reversed 17'h18005
     automatic logic[15:0] fcs = 0;
@@ -371,6 +371,81 @@ program testPr_hdlc(
     end
   endtask //VerifyOverflowSend
 
+  /****************************
+   *        Coverage          *
+   ****************************/
+  covergroup cov_rx @(posedge uin_hdlc.Clk);
+    Rx_ValidFrame : coverpoint uin_hdlc.Rx_ValidFrame { //
+      bins valid = 1;
+      bins notValid = 0;
+      bins start = (0=>1);
+      bins stop = (1=>0);
+    }
+    Rx : coverpoint uin_hdlc.Rx {
+      bins startStop = (0 => 1[*6] => 0);
+      bins idle = (1[*8]);
+      bins abort = (0 => 1[*7]);
+    }
+    Rx_Data : coverpoint uin_hdlc.Rx_Data {
+      bins range[3] = {[255:0]};
+    }
+    Rx_AbortSignal : coverpoint uin_hdlc.Rx_AbortSignal {
+      bins abort = 1;
+      bins notAbort = 0;
+    } //
+    Rx_Ready : coverpoint uin_hdlc.Rx_Ready {
+      bins ready = 1;
+      bins busy = 0;
+    } //
+    Rx_WrBuff : coverpoint uin_hdlc.Rx_WrBuff;
+    Rx_EoF : coverpoint uin_hdlc.Rx_EoF {
+      bins frameEnd = 1;
+      bins other = default;
+    } //
+    Rx_FrameSize : coverpoint uin_hdlc.Rx_FrameSize {
+      bins msgLong = {[96:$]};
+      bins msgShort = {[0:32]};
+      bins msgMedium = default;
+    }
+    Rx_Overflow : coverpoint uin_hdlc.Rx_Overflow {
+      bins overflow = 1;
+      bins normal = 0;
+    } //
+    Rx_FCSerr : coverpoint uin_hdlc.Rx_FCSerr;
+    Rx_FCSen : coverpoint uin_hdlc.Rx_FCSen;
+    Rx_DataBuffOut : coverpoint uin_hdlc.Rx_DataBuffOut;
+    Rx_RdBuff : coverpoint uin_hdlc.Rx_RdBuff;
+    Rx_NewByte : coverpoint uin_hdlc.Rx_NewByte {
+      bins newByte = 1;
+      bins other = default;
+    } //
+    Rx_StartZeroDetect : coverpoint uin_hdlc.Rx_StartZeroDetect;
+    Rx_FlagDetect : coverpoint uin_hdlc.Rx_FlagDetect {
+      bins detected = 1;
+      bins none = 0;
+    } //
+    Rx_AbortDetect : coverpoint uin_hdlc.Rx_AbortDetect {
+      bins aborted = 1;
+      bins normal = 0;
+    } //
+    Rx_FrameError : coverpoint uin_hdlc.Rx_FrameError {
+      bins error = 1;
+      bins normal = 0;
+    } //
+    Rx_Drop : coverpoint uin_hdlc.Rx_Drop;
+    Rx_StartFCS : coverpoint uin_hdlc.Rx_StartFCS;
+    Rx_StopFCS : coverpoint uin_hdlc.Rx_StopFCS;
+    
+  endgroup
+
+  covergroup cov_tx @(posedge uin_hdlc.Clk);
+
+  endgroup
+
+  
+
+  cov_rx cov_rx_inst = new();
+  cov_tx cov_tx_inst = new();
 
   /****************************************************************************
    *                                                                          *
