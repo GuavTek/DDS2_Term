@@ -615,6 +615,9 @@ program testPr_hdlc(
     SendData[Size]   = FCSBytes[7:0];
     SendData[Size+1] = FCSBytes[15:8];
 
+    // Ensure that buffer is ready
+    wait(uin_hdlc.Tx_Done);
+
     //Write TX buffer
     for(int i = 0; i < Size; i++) begin
       WriteAddress(3'h1, SendData[i]);
@@ -640,8 +643,6 @@ program testPr_hdlc(
     end else if(!Overflow) begin
       VerifyNormalSend(SendData, Size);
     end
-
-    wait(uin_hdlc.Tx_Done);
 
     #5000ns;
   endtask
