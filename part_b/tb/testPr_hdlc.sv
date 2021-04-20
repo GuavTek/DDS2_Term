@@ -264,13 +264,15 @@ program testPr_hdlc(
 	  logic [7:0] ReadData;
     
     for (int i = 0; i < Size ; i++) begin
-      wait(uin_hdlc.Tx_RdBuff);
-      @(posedge uin_hdlc.Clk);
       assert (data[i] == uin_hdlc.Tx_DataOutBuff)
         $display("PASS! data in Tx buffer correct");
       else begin
         $display("ERROR! wrong data in Tx buffer position %d. Found %h, should be %h", i, uin_hdlc.Tx_DataOutBuff, data[i]);
         TbErrorCnt++;
+      end
+
+      if (i < Size-1) begin
+        wait(uin_hdlc.Tx_RdBuff);
       end
     end
 
