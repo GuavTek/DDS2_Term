@@ -262,7 +262,9 @@ program testPr_hdlc(
   // Tx normal verification
   task VerifyNormalSend (logic [127:0][7:0] data, int Size);
 	  logic [7:0] ReadData;
+    automatic logic [1:0][7:0] FCSBytes;
     
+    // Check data
     for (int i = 0; i < Size ; i++) begin
       
       assert (data[i] == uin_hdlc.Tx_DataOutBuff)
@@ -272,11 +274,24 @@ program testPr_hdlc(
         TbErrorCnt++;
       end
 
-      @(posedge uin_hdlc.Clk);
-      
       if (i < Size-1) begin
         wait(uin_hdlc.Tx_RdBuff);
       end
+      @(posedge uin_hdlc.Clk);
+    end
+
+    // Check CRC bytes
+    wait(uin_hdlc.Tx_WriteFCS);
+    FCSBytes[0] = uin_hdlc.Tx_Data;
+    @(posedge uin_hdlc.Clk);
+    wait(uin_hdlc.Tx_WriteFCS);
+    FCSBytes[1] = uin_hdlc.Tx_Data;
+    @(posedge uin_hdlc.Clk);
+
+    assert ((data[Size] == FCSBytes[0])&&(data[Size+1] == FCSBytes[1]))
+      $display("PASS! CRC bytes correct");
+    else begin
+      $display("ERROR! CRC bytes are wrong, %h was sent instead of %h", FCSBytes[1:0], data[Size+1:Size]);
     end
 
     // Tx_Done
@@ -292,6 +307,9 @@ program testPr_hdlc(
       $display("ERROR! Missing TX_Done flag");
       TbErrorCnt++;
     end
+
+    VerifyCRC(data, Size);
+
   endtask //VerifyNormalSend
 
   // #9
