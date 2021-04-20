@@ -238,7 +238,6 @@ program testPr_hdlc(
     automatic logic[16:0] P = 17'h14003; // reversed 17'h18005
     automatic logic[15:0] fcs = 0;
     automatic logic[16:0] temp = 0;
-    automatic logic[15:0] crc = {data[Size+1], data[Size]};
 
     fcs[7:0] = data[0];
     fcs[15:8] = data[1];
@@ -251,9 +250,9 @@ program testPr_hdlc(
     end
 
     assert (fcs == 0) 
-      $display("PASS! Correct CRC generated");
+      $display("PASS! Correct FCS bytes generated");
     else begin
-      $display("ERROR! CRC bytes don't match. Got %4h", fcs);
+      $display("ERROR! FCS bytes don't match. Got %4h", fcs);
       TbErrorCnt++;  
     end
   endtask
