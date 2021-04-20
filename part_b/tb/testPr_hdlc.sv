@@ -370,8 +370,8 @@ program testPr_hdlc(
    ****************************/
   covergroup cov_rx @(posedge uin_hdlc.Clk);
     Rx_ValidFrame : coverpoint uin_hdlc.Rx_ValidFrame { //
-      bins valid = 1;
-      bins notValid = 0;
+      bins valid = {1};
+      bins notValid = {0};
       bins start = (0=>1);
       bins stop = (1=>0);
     }
@@ -384,16 +384,16 @@ program testPr_hdlc(
       bins range[3] = {[255:0]};
     }
     Rx_AbortSignal : coverpoint uin_hdlc.Rx_AbortSignal {
-      bins abort = 1;
-      bins notAbort = 0;
+      bins abort = {1};
+      bins notAbort = {0};
     } //
     Rx_Ready : coverpoint uin_hdlc.Rx_Ready {
-      bins ready = 1;
-      bins busy = 0;
+      bins ready = {1};
+      bins busy = {0};
     } //
     Rx_WrBuff : coverpoint uin_hdlc.Rx_WrBuff;
     Rx_EoF : coverpoint uin_hdlc.Rx_EoF {
-      bins frameEnd = 1;
+      bins frameEnd = {1};
       bins other = default;
     } //
     Rx_FrameSize : coverpoint uin_hdlc.Rx_FrameSize {
@@ -402,29 +402,29 @@ program testPr_hdlc(
       bins msgMedium = default;
     }
     Rx_Overflow : coverpoint uin_hdlc.Rx_Overflow {
-      bins overflow = 1;
-      bins normal = 0;
+      bins overflow = {1};
+      bins normal = {0};
     } //
     Rx_FCSerr : coverpoint uin_hdlc.Rx_FCSerr;
     Rx_FCSen : coverpoint uin_hdlc.Rx_FCSen;
     Rx_DataBuffOut : coverpoint uin_hdlc.Rx_DataBuffOut;
     Rx_RdBuff : coverpoint uin_hdlc.Rx_RdBuff;
     Rx_NewByte : coverpoint uin_hdlc.Rx_NewByte {
-      bins newByte = 1;
+      bins newByte = {1};
       bins other = default;
     } //
     Rx_StartZeroDetect : coverpoint uin_hdlc.Rx_StartZeroDetect;
     Rx_FlagDetect : coverpoint uin_hdlc.Rx_FlagDetect {
-      bins detected = 1;
-      bins none = 0;
+      bins detected = {1};
+      bins none = {0};
     } //
     Rx_AbortDetect : coverpoint uin_hdlc.Rx_AbortDetect {
-      bins aborted = 1;
-      bins normal = 0;
+      bins aborted = {1};
+      bins normal = {0};
     } //
     Rx_FrameError : coverpoint uin_hdlc.Rx_FrameError {
-      bins error = 1;
-      bins normal = 0;
+      bins error = {1};
+      bins normal = {0};
     } //
     Rx_Drop : coverpoint uin_hdlc.Rx_Drop;
     Rx_StartFCS : coverpoint uin_hdlc.Rx_StartFCS;
