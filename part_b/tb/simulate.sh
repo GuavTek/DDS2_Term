@@ -14,10 +14,10 @@ fi
 printf "${RED}\nSimulating${NC}\n"
 if [[ "$@" =~ --gui ]]
 then
-  	echo vsim -assertdebug -coverage -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *" &
+  	echo vsim -assertdebug -coverage -voptargs="+acc" test_hdlc bind_hdlc -do "coverage save -onexit sim_cov;log -r *" &
   	exit
 else
-	if vsim -assertdebug -coverage -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
+	if vsim -assertdebug -coverage -c -voptargs="+acc" test_hdlc bind_hdlc -do "coverage save -onexit sim_cov;log -r *; run -all; exit" 
 	then
 		echo "Success"
 	else
@@ -26,3 +26,4 @@ else
 	fi
 fi
 
+vcover report -cvg -details -file coverage_report.txt sim_cov
