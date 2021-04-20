@@ -585,7 +585,7 @@ program testPr_hdlc(
     //Start Transmission
     WriteAddress(3'h0, 8'h02);
 
-    while(!uin_hdlc.Tx_ValidFrame);   // Let transmission start
+    wait(!uin_hdlc.Tx_ValidFrame);   // Let transmission start
 
     if(Abort) begin
       repeat(16)
