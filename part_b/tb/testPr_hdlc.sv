@@ -315,6 +315,20 @@ program testPr_hdlc(
       TbErrorCnt++;
     end
 
+    assert(!(ReadData & (1 << 3)))
+      $display("PASS! TX_AbortedTrans flag not asserted");
+    else begin
+      $display("ERROR! TX_AbortedTrans flag is set");
+      TbErrorCnt++;
+    end
+
+    assert(ReadData & (1 << 4))
+      $display("PASS! TX_Full flag not asserted");
+    else begin
+      $display("ERROR! TX_Full flag is set");
+      TbErrorCnt++;
+    end
+
     VerifyCRC(data, Size);
 
   endtask //VerifyNormalSend
@@ -385,7 +399,10 @@ program testPr_hdlc(
     //Send: Size, Abort, Overflow
     Send( 24, 0, 0);                 //Normal
     Send( 66, 1, 0);                 //Abort
+    Send( 96, 0, 0);                 //Normal
     Send(126, 0, 1);                //Overflow
+    Send(  8, 0, 0);                 //Normal
+    Send(126, 0, 0);                 //Normal
     
     
 
