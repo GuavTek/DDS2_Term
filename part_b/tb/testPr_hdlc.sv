@@ -234,6 +234,8 @@ program testPr_hdlc(
 
   // #11
   // CRC verification
+	
+//CRC_Check	
   task VerifyCRC(logic [127:0][7:0] data, int Size);
     automatic logic[16:0] P = 17'h14003; // reversed 17'h18005
     automatic logic[15:0] fcs = 0;
