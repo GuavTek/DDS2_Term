@@ -109,7 +109,7 @@ module assertions_hdlc (
     Rx[*5] |=> (!Rx ##0 Rx_StartZeroDetect) or (Rx ##1 !Rx);
   endproperty
 
-  RX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_ZeroRemove);
+  RX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_ZeroRemove)
   else begin
     $display("ERROR! Zero was not removed");
     ErrCntAssertions++;
@@ -120,7 +120,7 @@ module assertions_hdlc (
     StartStop_pattern(Tx) ##0 Tx_ValidFrame |=> !(##[*] Tx[*6]) throughout (!Tx_ValidFrame[->1]) 
   endproperty
 
-  TX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) TX_ZeroInsert);
+  TX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) TX_ZeroInsert)
   else begin
     $display("ERROR! Zero insert was not generated");
     ErrCntAssertions++;
