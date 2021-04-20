@@ -198,7 +198,13 @@ program testPr_hdlc(
   // #16
   // Rx frame error
   task VerifyFrameErrorReceive (logic [127:0][7:0] data, int Size);
+    logic [7:0] ReadData;
+    wait(uin_hdlc.Rx_Ready);
+
+    ReadAddress(3'h2, ReadData);
+
     
+
   endtask //VerifyFrameErrorReceive
 
   // #11
@@ -289,14 +295,12 @@ program testPr_hdlc(
     ReadAddress(3'h0, ReadData);
 
     assert(ReadData & (1 << 4))
-      $display("PASS! TX overflow flag asserted");
+      $display("PASS! TX_Full flag asserted");
     else begin
-      $display("ERROR! Missing TX overflow flag");
+      $display("ERROR! Missing TX_Full flag");
       TbErrorCnt++;
     end
   endtask //VerifyOverflowSend
-
-  // #17
 
 
   /****************************************************************************
@@ -537,9 +541,9 @@ program testPr_hdlc(
     SendData[Size+1] = FCSBytes[15:8];
 
     //Write TX buffer
-    for(int i = 0; i < Size; i++){
+    for(int i = 0; i < Size; i++) begin
       WriteAddress(3'h1, SendData[i]);
-    }
+    end
 
     if(Overflow) begin
       WriteAddress(3'h1, 8'h66);
@@ -551,12 +555,11 @@ program testPr_hdlc(
     //Start Transmission
     WriteAddress(3'h0, 8'h02);
 
-    repeat(8)
-      @(posedge uin_hdlc.Clk);
+    while(!uin_hdlc.Tx_ValidFrame);   // Let transmission start
 
     if(Abort) begin
-      repeat(32)
-        @(posedge uin_hdlc.Clk);        // Let transmission start
+      repeat(16)
+      @(posedge uin_hdlc.Clk);
       WriteAddress(3'h0, 8'h04);        // Set abort signal
       VerifyAbortSend(SendData, Size);  // Run assertions
     end else if(!Overflow) begin
