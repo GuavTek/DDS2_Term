@@ -4,16 +4,6 @@
 // Date:    
 //////////////////////////////////////////////////
 
-/* The assertions_hdlc module is a test module containing the concurrent
-   assertions. It is used by binding the signals of assertions_hdlc to the
-   corresponding signals in the test_hdlc testbench. This is already done in
-   bind_hdlc.sv 
-
-   For this exercise you will write concurrent assertions for the Rx module:
-   - Verify that Rx_FlagDetect is asserted two cycles after a flag is received
-   - Verify that Rx_AbortSignal is asserted after receiving an abort flag
-*/
-
 module assertions_hdlc (
   output int   ErrCntAssertions,
   input  logic Clk,
@@ -196,7 +186,5 @@ module assertions_hdlc (
     $display("ERROR! Missing overflow signal");
     ErrCntAssertions++;
   end
-
-
 
 endmodule
