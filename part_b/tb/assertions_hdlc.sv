@@ -168,13 +168,13 @@ module assertions_hdlc (
   RX_Abort_Flag_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_Abort_Flag)
     $display("PASS! Abort flag detected");
   else begin
-    $display("ERROR! Abort flag not detected");
+    $error("ERROR! Abort flag not detected");
     ErrCntAssertions++;
   end
 
   // Tx abort pattern generation
   property TX_Abort_Flag;
-    Tx_AbortedTrans |-> ##2 Abort_pattern(Tx);
+    $rose(Tx_AbortedTrans) |-> ##2 Abort_pattern(Tx);
   endproperty
 
   TX_Abort_Flag_Assert: assert property (@(posedge Clk) disable iff(!Rst) TX_Abort_Flag)
