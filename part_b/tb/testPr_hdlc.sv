@@ -322,7 +322,7 @@ program testPr_hdlc(
       TbErrorCnt++;
     end
 
-    assert(ReadData & (1 << 4))
+    assert(!(ReadData & (1 << 4)))
       $display("PASS! TX_Full flag not asserted");
     else begin
       $display("ERROR! TX_Full flag is set");
@@ -640,6 +640,8 @@ program testPr_hdlc(
     end else if(!Overflow) begin
       VerifyNormalSend(SendData, Size);
     end
+
+    wait(uin_hdlc.Tx_Done);
 
     #5000ns;
   endtask
