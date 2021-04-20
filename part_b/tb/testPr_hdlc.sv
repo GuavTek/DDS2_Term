@@ -264,10 +264,8 @@ program testPr_hdlc(
 	  logic [7:0] ReadData;
     
     for (int i = 0; i < Size ; i++) begin
-      for (int j = 0; j < 9; j++) begin
-        if(uin_hdlc.Tx_Data == data[i])
-          break;
-      end
+      wait(Tx_RdBuff);
+      @(posedge uin_hdlc.Clk);
       assert (data[i] == uin_hdlc.Tx_Data)
         $display("PASS! data in Tx buffer correct");
       else begin
