@@ -162,7 +162,7 @@ module assertions_hdlc (
   // #8
   // Rx abort pattern check
   property RX_Abort_Flag;
-    Abort_pattern(Rx) |=> Rx_AbortDetect;
+    Abort_pattern(RxD) |=> Rx_AbortDetect;
   endproperty
 
   RX_Abort_Flag_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_Abort_Flag)
@@ -174,7 +174,7 @@ module assertions_hdlc (
 
   // Tx abort pattern generation
   property TX_Abort_Flag;
-    Tx_AbortFrame |=> Abort_pattern(Tx);
+    Tx_AbortFrame |-> ##2 Abort_pattern(Tx);
   endproperty
 
   TX_Abort_Flag_Assert: assert property (@(posedge Clk) disable iff(!Rst) TX_Abort_Flag)
