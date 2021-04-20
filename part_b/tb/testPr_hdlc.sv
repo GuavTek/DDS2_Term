@@ -285,16 +285,20 @@ program testPr_hdlc(
     FCSCorrect[0] = data[Size];
     FCSCorrect[1] = data[Size+1];
     wait(uin_hdlc.Tx_WriteFCS);
+    @(posedge uin_hdlc.Clk);
+    @(posedge uin_hdlc.Clk);
     FCSBytes[0] = uin_hdlc.Tx_Data;
-    @(posedge uin_hdlc.Clk);
+    
     wait(uin_hdlc.Tx_WriteFCS);
-    FCSBytes[1] = uin_hdlc.Tx_Data;
     @(posedge uin_hdlc.Clk);
+    @(posedge uin_hdlc.Clk);
+    FCSBytes[1] = uin_hdlc.Tx_Data;
 
     assert (FCSCorrect == FCSBytes)
       $display("PASS! CRC bytes correct");
     else begin
       $display("ERROR! CRC bytes are wrong, %h was sent instead of %h", FCSBytes[1:0], FCSCorrect[1:0]);
+      TbErrorCnt++;
     end
 
     // Tx_Done
