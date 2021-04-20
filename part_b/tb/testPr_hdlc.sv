@@ -250,7 +250,8 @@ program testPr_hdlc(
         fcs = temp[16:1];
       end
     end
-//CRC_Check
+
+    //CRC_Check
     assert (fcs == 0) 
       $display("PASS! Correct FCS bytes generated");
     else begin
@@ -403,8 +404,12 @@ program testPr_hdlc(
     Send( 66, 1, 0);                 //Abort
     Send( 96, 0, 0);                 //Normal
     Send(126, 0, 1);                //Overflow
-    Send(  8, 0, 0);                 //Normal
     Send(126, 0, 0);                 //Normal
+    
+    $display("*************************************************************");
+    $display("%t - Running corner case: short message immediately after transmitt", $time);
+    $display("*************************************************************");
+    Send(  8, 0, 0);                 //Normal
     
     
 
