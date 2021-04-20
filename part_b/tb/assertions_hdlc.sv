@@ -134,11 +134,26 @@ module assertions_hdlc (
 
   // #7
   // Rx idle pattern check
+  property RX_Idle;
+    Idle_pattern(Rx) |=> Rx or StartStop_pattern(Rx);
+  endproperty
 
+  RX_Idle_Assert: assert property (@(posedge Clk) RX_Idle)
+  else begin
+    $display("ERROR! Bad RX idle pattern");
+    errCntAssertions++;
+  end
 
   // Tx idle pattern generation
+  property TX_Idle;
+    Idle_pattern(Tx) |=> Tx or StartStop_pattern(Tx);
+  endproperty
 
-
+  TX_Idle_Assert: assert property (@(posedge Clk) TX_Idle)
+  else begin
+    $display("ERROR! Bad TX idle pattern");
+    errCntAssertions++;
+  end
   
   sequence Abort_pattern(sig1);
     !sig1 ##1 sig1[*7];
@@ -146,10 +161,28 @@ module assertions_hdlc (
 
   // #8
   // Rx abort pattern check
+  property RX_Abort_Flag;
+    Abort_pattern(Rx) |=> Rx_AbortDetect;
+  endproperty
 
+  RX_Abort_Flag_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_Abort_Flag)
+    $display("PASS! Abort flag detected");
+  else begin
+    $display("ERROR! Abort flag not detected");
+    ErrCntAssertions++;
+  end
 
   // Tx abort pattern generation
+  property TX_Abort_Flag;
+    Tx_AbortFrame |=> Abort_pattern(Tx);
+  endproperty
 
+  TX_Abort_Flag_Assert: assert property (@(posedge Clk) disable iff(!Rst) TX_Abort_Flag)
+    $display("PASS! Abort flag generated");
+  else begin
+    $display("ERROR! Abort flag not generated");
+    ErrCntAssertions++;
+  end
 
   // #13
   // Rx_Overflow
