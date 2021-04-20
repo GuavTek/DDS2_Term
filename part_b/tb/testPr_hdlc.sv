@@ -264,7 +264,7 @@ program testPr_hdlc(
 	  logic [7:0] ReadData;
     
     for (int i = 0; i < Size ; i++) begin
-      wait(uin_hdlc.Tx_RdBuff);
+      
       assert (data[i] == uin_hdlc.Tx_DataOutBuff)
         $display("PASS! data in Tx buffer correct");
       else begin
@@ -273,6 +273,10 @@ program testPr_hdlc(
       end
 
       @(posedge uin_hdlc.Clk);
+      
+      if (i < Size-1) begin
+        wait(uin_hdlc.Tx_RdBuff);
+      end
     end
 
     // Tx_Done
