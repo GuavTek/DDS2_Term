@@ -138,7 +138,7 @@ program testPr_hdlc(
       TbErrorCnt++;
     end
 
-    for (int i = 0; i < Size; i++) begin
+    for (int i = 0; i < Size+2; i++) begin
       ReadAddress(3'h3, ReadData);
       assert (data[i] == ReadData)
         $display("PASS! data in Rx buffer correct");
@@ -204,40 +204,40 @@ program testPr_hdlc(
   // #11
   // CRC verification
   task VerifyCRC(logic [127:0][7:0] data, int Size);
-  automatic logic[16:0] P = 17'h14003; // reversed 17'h18005
-  automatic logic[15:0] fcs = 0;
-  automatic logic[16:0] temp = 0;
-  automatic logic[15:0] crc = {data[Size+1], data[Size]};
+    automatic logic[16:0] P = 17'h14003; // reversed 17'h18005
+    automatic logic[15:0] fcs = 0;
+    automatic logic[16:0] temp = 0;
+    automatic logic[15:0] crc = {data[Size+1], data[Size]};
 
-  fcs[7:0] = data[0];
-  fcs[15:8] = data[1];
+    fcs[7:0] = data[0];
+    fcs[15:8] = data[1];
 
-  for (int i = 0; i < Size; i++) begin
-    for (int j = 0; j < 8; j++) begin
-      temp = fcs[0] ? P ^ {data[i+2][j], fcs}:{data[i+2][j], fcs};
-      fcs = temp[16:1];
+    for (int i = 0; i < Size; i++) begin
+      for (int j = 0; j < 8; j++) begin
+        temp = fcs[0] ? P ^ {data[i+2][j], fcs}:{data[i+2][j], fcs};
+        fcs = temp[16:1];
+      end
     end
-  end
 
-  assert (fcs == 0) 
-    $display("PASS! Correct CRC generated");
-  else begin
-    $display("ERROR! CRC bytes don't match. Got %4h", fcs);
-    TbErrorCnt++;  
-  end
+    assert (fcs == 0) 
+      $display("PASS! Correct CRC generated");
+    else begin
+      $display("ERROR! CRC bytes don't match. Got %4h", fcs);
+      TbErrorCnt++;  
+    end
   endtask
 
   // #4
   // Tx normal verification
   task VerifyNormalSend (logic [127:0][7:0] data, int Size);
-	logic [7:0] ReadData;
+	  logic [7:0] ReadData;
     
   endtask //VerifyNormalSend
 
   // #9
   // Tx abort verification
   task VerifyAbortSend (logic [127:0][7:0] data, int Size);
-	logic [7:0] ReadData;
+	  logic [7:0] ReadData;
   
   endtask //VerifyAbortSend
 
@@ -249,6 +249,7 @@ program testPr_hdlc(
   endtask //VerifyOverflowSend
 
   // #17
+
 
   /****************************************************************************
    *                                                                          *
@@ -273,6 +274,14 @@ program testPr_hdlc(
     Receive( 25, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 69, 0, 1, 0, 0, 0, 0); //FCSerr
     Receive( 30, 0, 0, 1, 0, 0, 0); //NonByteAligned
+    Receive( 78, 0, 0, 3, 0, 0, 0); //NonByteAligned
+    Receive( 9, 0, 0, 7, 0, 0, 0); //NonByteAligned
+    
+
+    //Send: Size, Abort, Overflow
+    Send(24, 0, 0);                 //Normal
+    Send(66, 1, 0);                 //Abort
+    Send(126, 0, 1);                //Overflow
     
     
 
@@ -424,7 +433,9 @@ program testPr_hdlc(
     end 
 
     if(NonByteAligned) begin
-      // Do something
+      uin_hdlc.Rx = 1'b0;
+      repeat(NonByteAligned)
+        @(posedge uin_hdlc.Clk);
     end
 
     if(Abort) begin
@@ -486,22 +497,22 @@ program testPr_hdlc(
       WriteAddress(3'h1, 8'h66);
       WriteAddress(3'h1, 8'h7f);
       WriteAddress(3'h1, 8'hb0);
-    end else begin
-      //Start Transmission
-      WriteAddress(3'h0, 8'h02);
-
-      repeat(8)
-        @(posedge uin_hdlc.Clk);
+      VerifyOverflowSend(SendData, Size);
     end
+    
+    //Start Transmission
+    WriteAddress(3'h0, 8'h02);
+
+    repeat(8)
+      @(posedge uin_hdlc.Clk);
+    
 
     if(Abort) begin
       repeat(32)
         @(posedge uin_hdlc.Clk);        // Let transmission start
       WriteAddress(3'h0, 8'h04);        // Set abort signal
       VerifyAbortSend(SendData, Size);  // Run assertions
-    end else if(Overflow) begin
-      VerifyOverflowSend(SendData, Size);
-    end else begin
+    end else if(!Overflow) begin
       VerifyNormalSend(SendData, Size);
     end
 
