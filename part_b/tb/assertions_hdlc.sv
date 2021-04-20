@@ -141,7 +141,7 @@ module assertions_hdlc (
   RX_Idle_Assert: assert property (@(posedge Clk) RX_Idle)
   else begin
     $display("ERROR! Bad RX idle pattern");
-    errCntAssertions++;
+    ErrCntAssertions++;
   end
 
   // Tx idle pattern generation
@@ -152,7 +152,7 @@ module assertions_hdlc (
   TX_Idle_Assert: assert property (@(posedge Clk) TX_Idle)
   else begin
     $display("ERROR! Bad TX idle pattern");
-    errCntAssertions++;
+    ErrCntAssertions++;
   end
   
   sequence Abort_pattern(sig1);
