@@ -391,6 +391,7 @@ program testPr_hdlc(
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive(126, 0, 0, 0, 0, 0, 0); //Normal
     Receive(122, 1, 0, 0, 0, 0, 0); //Abort
+    Receive( 35, 0, 0, 0, 0, 0, 0); //Normal    
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive( 25, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 69, 0, 1, 0, 0, 0, 0); //FCSerr
