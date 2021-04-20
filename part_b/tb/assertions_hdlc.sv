@@ -62,14 +62,15 @@ module assertions_hdlc (
 
   // #5
   // Check if flag sequence is generated
+  // Start-flag has 2 cycle delay, Stop-flag has 1 cycle
   property TX_FlagGen;
-    StartStop_pattern(Tx) |-> 1;
+    !$stable(Tx_ValidFrame) |-> ##[1:2] StartStop_pattern(Tx);
   endproperty
 
   TX_FlagGen_Assert : assert property (@(posedge Clk) TX_FlagGen) begin
     $display("PASS: Flag Generated");
   end else begin 
-    $error("No flag?! impossible..."); 
+    $error("ERROR: No flag Generated"); 
     ErrCntAssertions++; 
   end
 
@@ -103,11 +104,27 @@ module assertions_hdlc (
   end
 
   // #6
-  // Rx zero removal
+  // Rx zero removal (or start/stop sequence)
+  property RX_ZeroRemove;
+    Rx[*5] |=> (!Rx ##0 Rx_StartZeroDetect) or (Rx ##1 !Rx);
+  endproperty
 
+  RX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_ZeroRemove);
+  else begin
+    $display("ERROR! Zero was not removed");
+    ErrCntAssertions++;
+  end
 
   // Tx zero insertion
+  property TX_ZeroInsert;
+    StartStop_pattern(Tx) ##0 Tx_ValidFrame |=> !(##[*] Tx[*6]) throughout (!Tx_ValidFrame[->1]) 
+  endproperty
 
+  TX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) TX_ZeroInsert);
+  else begin
+    $display("ERROR! Zero insert was not generated");
+    ErrCntAssertions++;
+  end
 
   sequence Idle_pattern(sig1);
     sig1[*8];
