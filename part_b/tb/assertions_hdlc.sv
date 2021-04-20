@@ -72,7 +72,7 @@ module assertions_hdlc (
   TX_FlagGen_Assert : assert property (@(posedge Clk) TX_FlagGen) begin
     $display("PASS: Flag Generated");
   end else begin 
-    $$display("ERROR: No flag Generated"); 
+    $display("ERROR: No flag Generated"); 
     ErrCntAssertions++; 
   end
 
@@ -106,9 +106,9 @@ module assertions_hdlc (
   end
 
   // #6
-  // Rx zero removal (or start/stop sequence)
+  // Rx zero removal
   property RX_ZeroRemove;
-    Rx_ValidFrame ##0 RxD[*5] |=> (!RxD ##0 ZeroDetect);
+    RxD[*5] ##0 Rx_ValidFrame |=> (!RxD ##0 ZeroDetect);
   endproperty
 
   RX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_ZeroRemove)
