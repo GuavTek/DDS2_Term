@@ -108,7 +108,7 @@ module assertions_hdlc (
   // #6
   // Rx zero removal (or start/stop sequence)
   property RX_ZeroRemove;
-    Rx_ValidFrame ##0 RxD[*5] |=> (!RxD ##0 ZeroDetect) or (RxD ##1 !RxD);
+    Rx_ValidFrame ##0 RxD[*5] |=> (!RxD ##0 ZeroDetect);
   endproperty
 
   RX_Zero_Assert: assert property (@(posedge Clk) disable iff(!Rst) RX_ZeroRemove)

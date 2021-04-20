@@ -11,6 +11,7 @@ module bind_hdlc ();
     .Clk              (uin_hdlc.Clk),
     .Rst              (uin_hdlc.Rst),
     .Rx               (uin_hdlc.Rx),
+    .Rx_Data          (uin_hdlc.RxD),
     .Rx_FlagDetect    (uin_hdlc.Rx_FlagDetect),
     .Rx_ValidFrame    (uin_hdlc.Rx_ValidFrame),
     .Rx_AbortDetect   (uin_hdlc.Rx_AbortDetect),
@@ -24,7 +25,8 @@ module bind_hdlc ();
     .Tx_ValidFrame    (uin_hdlc.Tx_ValidFrame),
     .Tx_AbortFrame    (uin_hdlc.Tx_AbortFrame),
     .Tx_AbortedTrans  (uin_hdlc.Tx_AbortedTrans),
-    .Tx_InitZero      (uin_hdlc.Tx_InitZero)
+    .Tx_InitZero      (uin_hdlc.Tx_InitZero),
+    .ZeroDetect       (uin_hdlc.ZeroDetect)
   );
 
 endmodule
