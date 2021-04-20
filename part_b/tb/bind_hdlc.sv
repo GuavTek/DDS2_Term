@@ -19,10 +19,12 @@ module bind_hdlc ();
     .Rx_WrBuff        (uin_hdlc.Rx_WrBuff),
     .Rx_EoF           (uin_hdlc.Rx_EoF),
     .Rx_NewByte       (uin_hdlc.Rx_NewByte),
+    .Rx_StartZeroDetect (uin_hdlc.Rx_StartZeroDetect),
     .Tx               (uin_hdlc.Tx),
     .Tx_ValidFrame    (uin_hdlc.Tx_ValidFrame),
     .Tx_AbortFrame    (uin_hdlc.Tx_AbortFrame),
-    .Tx_AbortedTrans  (uin_hdlc.Tx_AbortedTrans)
+    .Tx_AbortedTrans  (uin_hdlc.Tx_AbortedTrans),
+    .Tx_InitZero      (uin_hdlc.Tx_InitZero)
   );
 
 endmodule

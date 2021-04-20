@@ -27,10 +27,12 @@ module assertions_hdlc (
   input  logic Rx_Overflow,
   input  logic Rx_WrBuff,
   input  logic Rx_NewByte,
+  input  logic Rx_StartZeroDetect,
   input  logic Tx,
   input  logic Tx_AbortFrame,
   input  logic Tx_ValidFrame,
-  input  logic Tx_AbortedTrans
+  input  logic Tx_AbortedTrans,
+  input  logic Tx_InitZero
 );
 
   initial begin
