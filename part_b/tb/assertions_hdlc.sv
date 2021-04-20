@@ -66,7 +66,7 @@ module assertions_hdlc (
   // Check if flag sequence is generated
   // Start-flag has 2 cycle delay, Stop-flag has 1 cycle
   property TX_FlagGen;
-    !$stable(Tx_ValidFrame) ##0 !TX_AbortedTrans |-> ##[1:2] StartStop_pattern(Tx);
+    !$stable(Tx_ValidFrame) ##0 !Tx_AbortedTrans |-> ##[1:2] StartStop_pattern(Tx);
   endproperty
 
   TX_FlagGen_Assert : assert property (@(posedge Clk) TX_FlagGen) begin
