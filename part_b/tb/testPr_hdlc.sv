@@ -271,6 +271,8 @@ program testPr_hdlc(
         TbErrorCnt++;
       end
 
+      @(posedge uin_hdlc.Clk);
+
       if (i < Size-1) begin
         wait(uin_hdlc.Tx_RdBuff);
       end
