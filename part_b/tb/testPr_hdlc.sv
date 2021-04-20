@@ -227,11 +227,38 @@ program testPr_hdlc(
     end
   endtask
 
-  // #4
+  // #4 #17
   // Tx normal verification
   task VerifyNormalSend (logic [127:0][7:0] data, int Size);
 	  logic [7:0] ReadData;
     
+    int oneCnt = 0;
+    for (int i = 0; i < Size ; i++) begin
+      for (int j = 0; j < 9; j++) begin
+        if(uin_hdlc.Tx_Data == data[i])
+          break;
+      end
+      assert (data[i] == uin_hdlc.Tx_Data)
+        $display("PASS! data in Tx buffer correct");
+      else begin
+        $display("ERROR! wrong data in Tx buffer position %d. Found %h, should be %h", i, uin_hdlc.Tx_Data[i], data[i]);
+        TbErrorCnt++;
+      end
+    end
+
+    // Tx_Done
+    for(int i = 0; i < 32; i++) begin
+      ReadAddress(3'h0, ReadData);
+      if (ReadData & (1 << 0))
+        break;
+    end
+
+    assert(ReadData & (1 << 0))
+      $display("PASS! TX_Done flag asserted");
+    else begin
+      $display("ERROR! Missing TX_Done flag");
+      TbErrorCnt++;
+    end
   endtask //VerifyNormalSend
 
   // #9
