@@ -250,7 +250,7 @@ program testPr_hdlc(
         fcs = temp[16:1];
       end
     end
-
+//CRC_Check
     assert (fcs == 0) 
       $display("PASS! Correct FCS bytes generated");
     else begin
@@ -269,6 +269,7 @@ program testPr_hdlc(
     // Check data
     for (int i = 0; i < Size ; i++) begin
       
+      //TxBufferCorrect
       assert (data[i] == uin_hdlc.Tx_DataOutBuff)
         $display("PASS! data in Tx buffer correct");
       else begin
