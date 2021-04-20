@@ -55,7 +55,7 @@ module assertions_hdlc (
     StartStop_pattern(Rx) |-> ##2 Rx_FlagDetect;
   endproperty
 
-  RX_FlagDetect_Assert : assert property (@(posedge Clk) RX_FlagDetect) begin
+  RX_FlagDetect_Assert : assert property (@(posedge Clk) disable iff(!Rst) RX_FlagDetect) begin
     $display("PASS: Flag detect");
   end else begin 
     $error("Flag sequence did not generate FlagDetect"); 
@@ -69,7 +69,7 @@ module assertions_hdlc (
     !$stable(Tx_ValidFrame) ##0 !Tx_AbortedTrans |-> ##[1:2] StartStop_pattern(Tx);
   endproperty
 
-  TX_FlagGen_Assert : assert property (@(posedge Clk) TX_FlagGen) begin
+  TX_FlagGen_Assert : assert property (@(posedge Clk) disable iff(!Rst) TX_FlagGen) begin
     $display("PASS: Flag Generated");
   end else begin 
     $display("ERROR: No flag Generated"); 
