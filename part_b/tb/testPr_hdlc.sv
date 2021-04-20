@@ -245,7 +245,16 @@ program testPr_hdlc(
   // #18
   // Tx overflow
   task VerifyOverflowSend (logic [127:0][7:0] data, int Size);
-    
+    logic [7:0] ReadData;
+
+    ReadAddress(3'h0, ReadData);
+
+    assert(ReadData & (1 << 4))
+      $display("PASS! TX overflow flag asserted");
+    else begin
+      $display("ERROR! Missing TX overflow flag");
+      TbErrorCnt++;
+    end
   endtask //VerifyOverflowSend
 
   // #17
@@ -275,12 +284,12 @@ program testPr_hdlc(
     Receive( 69, 0, 1, 0, 0, 0, 0); //FCSerr
     Receive( 30, 0, 0, 1, 0, 0, 0); //NonByteAligned
     Receive( 78, 0, 0, 3, 0, 0, 0); //NonByteAligned
-    Receive( 9, 0, 0, 7, 0, 0, 0); //NonByteAligned
+    Receive(  9, 0, 0, 7, 0, 0, 0); //NonByteAligned
     
 
     //Send: Size, Abort, Overflow
-    Send(24, 0, 0);                 //Normal
-    Send(66, 1, 0);                 //Abort
+    Send( 24, 0, 0);                 //Normal
+    Send( 66, 1, 0);                 //Abort
     Send(126, 0, 1);                //Overflow
     
     
@@ -505,7 +514,6 @@ program testPr_hdlc(
 
     repeat(8)
       @(posedge uin_hdlc.Clk);
-    
 
     if(Abort) begin
       repeat(32)
