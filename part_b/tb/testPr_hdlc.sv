@@ -264,7 +264,6 @@ program testPr_hdlc(
   task VerifyNormalSend (logic [127:0][7:0] data, int Size);
 	  logic [7:0] ReadData;
     
-    int oneCnt = 0;
     for (int i = 0; i < Size ; i++) begin
       for (int j = 0; j < 9; j++) begin
         if(uin_hdlc.Tx_Data == data[i])
@@ -534,7 +533,7 @@ program testPr_hdlc(
       VerifyOverflowReceive(ReceiveData, Size);
     else if(FCSerr || NonByteAligned);
       VerifyFrameErrorReceive(ReceiveData, Size);
-    else if(!SkipRead)
+    else if(!SkipRead);
       VerifyNormalReceive(ReceiveData, Size);
 
     #5000ns;
