@@ -263,6 +263,7 @@ program testPr_hdlc(
   task VerifyNormalSend (logic [127:0][7:0] data, int Size);
 	  logic [7:0] ReadData;
     automatic logic [1:0][7:0] FCSBytes;
+    automatic logic [1:0][7:0] FCSCorrect;
     
     // Check data
     for (int i = 0; i < Size ; i++) begin
@@ -280,7 +281,9 @@ program testPr_hdlc(
       @(posedge uin_hdlc.Clk);
     end
 
-    // Check CRC bytes
+    // Check FCS bytes
+    FCSCorrect[0] = data[Size];
+    FCSCorrect[1] = data[Size+1];
     wait(uin_hdlc.Tx_WriteFCS);
     FCSBytes[0] = uin_hdlc.Tx_Data;
     @(posedge uin_hdlc.Clk);
@@ -288,10 +291,10 @@ program testPr_hdlc(
     FCSBytes[1] = uin_hdlc.Tx_Data;
     @(posedge uin_hdlc.Clk);
 
-    assert ((data[Size] == FCSBytes[0])&&(data[Size+1] == FCSBytes[1]))
+    assert (FCSCorrect == FCSBytes)
       $display("PASS! CRC bytes correct");
     else begin
-      $display("ERROR! CRC bytes are wrong, %h was sent instead of %h", FCSBytes[1:0], data[Size+1:Size]);
+      $display("ERROR! CRC bytes are wrong, %h was sent instead of %h", FCSBytes[1:0], FCSCorrect[1:0]);
     end
 
     // Tx_Done
