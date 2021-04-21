@@ -460,10 +460,10 @@ Covergroup                                             Metric       Goal    Stat
         default bin range[0]                            15039               Occurred             
         default bin range[1]                              147               Occurred             
         default bin range[2]                              152               Occurred             
- TYPE /test_hdlc/u_testPr/cov_reg                       94.0%        100    Uncovered            
-    covered/total bins:                                    26         29                      
-    missing/total bins:                                     3         29                      
-    % Hit:                                              89.6%        100                      
+ TYPE /test_hdlc/u_testPr/cov_reg                      100.0%        100    Covered              
+    covered/total bins:                                    26         26                      
+    missing/total bins:                                     0         26                      
+    % Hit:                                             100.0%        100                      
     Coverpoint cov_reg::Addr                           100.0%        100    Covered              
         covered/total bins:                                 5          5                      
         missing/total bins:                                 0          5                      
@@ -484,14 +484,14 @@ Covergroup                                             Metric       Goal    Stat
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
-    Cross cov_reg::WriteAddr                            80.0%        100    Uncovered            
-        covered/total bins:                                 8         10                      
-        missing/total bins:                                 2         10                      
-        % Hit:                                          80.0%        100                      
-    Cross cov_reg::ReadAddr                             90.0%        100    Uncovered            
-        covered/total bins:                                 9         10                      
-        missing/total bins:                                 1         10                      
-        % Hit:                                          90.0%        100                      
+    Cross cov_reg::WriteAddr                           100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
+    Cross cov_reg::ReadAddr                            100.0%        100    Covered              
+        covered/total bins:                                 9          9                      
+        missing/total bins:                                 0          9                      
+        % Hit:                                         100.0%        100                      
     Cross cov_reg::DataIAddr                             0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
@@ -501,10 +501,10 @@ Covergroup                                             Metric       Goal    Stat
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
  Covergroup instance \/test_hdlc/u_testPr/cov_reg_inst  
-                                                        94.0%        100    Uncovered            
-    covered/total bins:                                    26         29                      
-    missing/total bins:                                     3         29                      
-    % Hit:                                              89.6%        100                      
+                                                       100.0%        100    Covered              
+    covered/total bins:                                    26         26                      
+    missing/total bins:                                     0         26                      
+    % Hit:                                             100.0%        100                      
     Coverpoint Addr                                    100.0%        100    Covered              
         covered/total bins:                                 5          5                      
         missing/total bins:                                 0          5                      
@@ -525,7 +525,7 @@ Covergroup                                             Metric       Goal    Stat
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin Read                                          438          1    Covered              
+        bin read                                          438          1    Covered              
         bin noRead                                      14900          1    Covered              
     Coverpoint DataIn [2]                                0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
@@ -541,34 +541,33 @@ Covergroup                                             Metric       Goal    Stat
         default bin range[0]                            15234               Occurred             
         default bin range[1]                               47               Occurred             
         default bin range[2]                               57               Occurred             
-    Cross WriteAddr                                     80.0%        100    Uncovered            
-        covered/total bins:                                 8         10                      
-        missing/total bins:                                 2         10                      
-        % Hit:                                          80.0%        100                      
+    Cross WriteAddr                                    100.0%        100    Covered              
+        covered/total bins:                                 8          8                      
+        missing/total bins:                                 0          8                      
+        % Hit:                                         100.0%        100                      
         bin <TX_SCR,write>                                  7          1    Covered              
         bin <TX_Buff,write>                               449          1    Covered              
-        bin <RX_SCR,write>                                 11          1    Covered              
         bin <TX_SCR,noWrite>                             6748          1    Covered              
         bin <TX_Buff,noWrite>                             449          1    Covered              
+        bin <RX_SCR,write>                                 11          1    Covered              
         bin <RX_SCR,noWrite>                             6784          1    Covered              
         bin <RX_Buff,noWrite>                             884          1    Covered              
         bin <RX_Len,noWrite>                                6          1    Covered              
-        bin <RX_Buff,write>                                 0          1    ZERO                 
-        bin <RX_Len,write>                                  0          1    ZERO                 
-    Cross ReadAddr                                      90.0%        100    Uncovered            
-        covered/total bins:                                 9         10                      
-        missing/total bins:                                 1         10                      
-        % Hit:                                          90.0%        100                      
-        bin <TX_SCR,Read>                                   7          1    Covered              
-        bin <RX_SCR,Read>                                  11          1    Covered              
-        bin <RX_Buff,Read>                                417          1    Covered              
-        bin <RX_Len,Read>                                   3          1    Covered              
+        illegal_bin Read_only                               0               ZERO                 
+    Cross ReadAddr                                     100.0%        100    Covered              
+        covered/total bins:                                 9          9                      
+        missing/total bins:                                 0          9                      
+        % Hit:                                         100.0%        100                      
+        bin <TX_SCR,read>                                   7          1    Covered              
         bin <TX_SCR,noRead>                              6748          1    Covered              
         bin <TX_Buff,noRead>                              898          1    Covered              
+        bin <RX_SCR,read>                                  11          1    Covered              
+        bin <RX_Buff,read>                                417          1    Covered              
         bin <RX_SCR,noRead>                              6784          1    Covered              
         bin <RX_Buff,noRead>                              467          1    Covered              
+        bin <RX_Len,read>                                   3          1    Covered              
         bin <RX_Len,noRead>                                 3          1    Covered              
-        bin <TX_Buff,Read>                                  0          1    ZERO                 
+        illegal_bin Write_only                              0               ZERO                 
     Cross DataIAddr [2]                                  0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
@@ -580,4 +579,4 @@ Covergroup                                             Metric       Goal    Stat
 
  [2] - Does not contribute coverage as the item is empty
 
-TOTAL COVERGROUP COVERAGE: 95.3%  COVERGROUP TYPES: 3
+TOTAL COVERGROUP COVERAGE: 97.3%  COVERGROUP TYPES: 3

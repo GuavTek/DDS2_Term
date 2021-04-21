@@ -1,5 +1,5 @@
 # vsim -assertdebug -coverage -c -voptargs="+acc" test_hdlc bind_hdlc -do "coverage save -onexit sim_cov;log -r *; run -all; exit" 
-# Start time: 16:53:38 on Apr 21,2021
+# Start time: 17:24:49 on Apr 21,2021
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "RxBuff(fast)".
@@ -658,10 +658,10 @@
 # *************************************************************
 #              7668750 - Finishing Test Program
 # *************************************************************
-# ** Note: $stop    : ./testPr_hdlc.sv(574)
+# ** Note: $stop    : ./testPr_hdlc.sv(578)
 #    Time: 7668750 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
-# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 574
-# Stopped at ./testPr_hdlc.sv line 574
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 578
+# Stopped at ./testPr_hdlc.sv line 578
 #  exit
 # Saving coverage database on exit...
 # *********************************
@@ -669,5 +669,5 @@
 # * 	Assertion Errors: 3	  *
 # *                               *
 # *********************************
-# End time: 16:53:43 on Apr 21,2021, Elapsed time: 0:00:05
+# End time: 17:24:54 on Apr 21,2021, Elapsed time: 0:00:05
 # Errors: 0, Warnings: 11
