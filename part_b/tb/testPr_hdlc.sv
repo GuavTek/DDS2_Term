@@ -372,13 +372,17 @@ program testPr_hdlc(
     Rx_ValidFrame : coverpoint uin_hdlc.Rx_ValidFrame { //
       bins valid = {1};
       bins notValid = {0};
-      bins start = (0=>1);
-      bins stop = (1=>0);
+//      bins start = (0=>1);
+//      bins stop = (1=>0);
     }
     Rx : coverpoint uin_hdlc.Rx {
       bins startStop = (0 => 1[*6] => 0);
       bins idle = (1[*8]);
       bins abort = (0 => 1[*7]);
+    }
+    RxEN : coverpoint uin_hdlc.RxEN {
+      bins enabled = {1};
+      bins disabled = {0};
     }
     Rx_Data : coverpoint uin_hdlc.Rx_Data {
       bins range[3] = {[255:0]};
@@ -397,17 +401,20 @@ program testPr_hdlc(
       bins other = default;
     } //
     Rx_FrameSize : coverpoint uin_hdlc.Rx_FrameSize {
-      bins msgLong = {[96:$]};
-      bins msgShort = {[0:32]};
-      bins msgMedium = default;
+      range[3] = default;
     }
     Rx_Overflow : coverpoint uin_hdlc.Rx_Overflow {
       bins overflow = {1};
       bins normal = {0};
     } //
-    Rx_FCSerr : coverpoint uin_hdlc.Rx_FCSerr;
+    Rx_FCSerr : coverpoint uin_hdlc.Rx_FCSerr {
+      bins errors = {1};
+      bins normal = {0};
+    }
     Rx_FCSen : coverpoint uin_hdlc.Rx_FCSen;
-    Rx_DataBuffOut : coverpoint uin_hdlc.Rx_DataBuffOut;
+    Rx_DataBuffOut : coverpoint uin_hdlc.Rx_DataBuffOut {
+      bins range[3] = default;
+    }
     Rx_RdBuff : coverpoint uin_hdlc.Rx_RdBuff;
     Rx_NewByte : coverpoint uin_hdlc.Rx_NewByte {
       bins newByte = {1};
@@ -429,17 +436,93 @@ program testPr_hdlc(
     Rx_Drop : coverpoint uin_hdlc.Rx_Drop;
     Rx_StartFCS : coverpoint uin_hdlc.Rx_StartFCS;
     Rx_StopFCS : coverpoint uin_hdlc.Rx_StopFCS;
-    
+    ZeroDetect : coverpoint uin_hdlc.ZeroDetect;
   endgroup
 
   covergroup cov_tx @(posedge uin_hdlc.Clk);
+    Tx : coverpoint uin_hdlc.Tx {
+      bins startStop = (0 => 1[*6] => 0);
+      bins idle = (1[*8]);
+      bins abort = (0 => 1[*7]);
+    }
+    TxEN : coverpoint uin_hdlc.TxEN {
+      bins enabled = {1};
+      bins disabled = {0};
+    }
+    Tx_ValidFrame : coverpoint uin_hdlc.Tx_ValidFrame {
+      bins valid = {1};
+      bins notValid = {0};
+    } //
+    Tx_Data : coverpoint uin_hdlc.Tx_Data {
+      bins range[3] = default;
+    }
+    Tx_AbortedTrans : coverpoint uin_hdlc.Tx_AbortedTrans {
+      bins abort = {1};
+      bins notAbort = {0};
+    } //
+    Tx_WriteFCS : coverpoint uin_hdlc.Tx_WriteFCS;
+    Tx_InitZero : coverpoint uin_hdlc.Tx_InitZero;
+    Tx_StartFCS : coverpoint uin_hdlc.Tx_StartFCS;
+    Tx_FrameSize : coverpoint uin_hdlc.Tx_FrameSize {
+      bins range[3] = default;
+    }
+    Tx_RdBuff : coverpoint uin_hdlc.Tx_RdBuff;
+    Tx_NewByte : coverpoint uin_hdlc.Tx_NewByte;
+    Tx_FCSDone : coverpoint uin_hdlc.Tx_FCSDone;
+    Tx_DataOutBuff : coverpoint uin_hdlc.Tx_DataOutBuff {
+      range[3] = default;
+    } //
+    Tx_Done : coverpoint uin_hdlc.Tx_Done {
+      bins ready = {1};
+      bins notReady = {0};
+    } //
+    Tx_Full : coverpoint uin_hdlc.Tx_Full {
+      bins overflow = {1};
+      bins normal = {0};
+    } //
+    Tx_DataAvail : coverpoint uin_hdlc.Tx_DataAvail;
+    Tx_WrBuff : coverpoint uin_hdlc.Tx_WrBuff;
+    Tx_Enable : coverpoint uin_hdlc.Tx_Enable;
+    Tx_AbortFrame : coverpoint uin_hdlc.Tx_AbortFrame;
+    Tx_DataInBuff : coverpoint uin_hdlc.Tx_DataInBuff {
+      range[3] = default;
+    }
+  endgroup
+
+  covergroup cov_reg @(posedge uin_hdlc.Clk);
+    Addr : coverpoint uin_hdlc.Address {
+      bins TX_SCR = {0};
+      bins TX_Buff = {1};
+      bins RX_SCR = {2};
+      bins RX_Buff = {3};
+      bins RX_Len = {4};
+      illegal_bins other = {[5:7]};
+    }
+    WrEn : coverpoint uin_hdlc.WriteEnable {
+      bins write = {1};
+      bins noWrite = {0};
+    }
+    RdEn : coverpoint uin_hdlc.ReadEnable {
+      bins Read = {1};
+      bins noRead = {0};
+    }
+    DataIn : coverpoint uin_hdlc.DataIn {
+      bins range[3] = default;
+    }
+    DataOut : coverpoint uin_hdlc.DataOut {
+      bins range[3] = default;
+    }
+
+    cross Addr, WrEn;
+    cross Addr, RdEn;
+    cross Addr, DataIn;
+    cross Addr, DataOut;
 
   endgroup
 
-  
-
   cov_rx cov_rx_inst = new();
   cov_tx cov_tx_inst = new();
+  cov_reg cov_reg_inst = new();
 
   /****************************************************************************
    *                                                                          *
