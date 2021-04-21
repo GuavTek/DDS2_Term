@@ -503,7 +503,7 @@ program testPr_hdlc(
       bins noWrite = {0};
     }
     RdEn : coverpoint uin_hdlc.ReadEnable {
-      bins Read = {1};
+      bins read = {1};
       bins noRead = {0};
     }
     DataIn : coverpoint uin_hdlc.DataIn {
@@ -513,8 +513,12 @@ program testPr_hdlc(
       bins range[3] = default;
     }
 
-    WriteAddr : cross Addr, WrEn;
-    ReadAddr : cross Addr, RdEn;
+    WriteAddr : cross Addr, WrEn {
+      illegal_bins Read_only = {Addr.RX_Buff intersect WrEn.write, Addr.RX_Len intersect WrEn.write};
+    }
+    ReadAddr : cross Addr, RdEn {
+      illegal_bins Write_only = {Addr.TX_Buff intersect RdEn.read};
+    }
     DataIAddr : cross Addr, DataIn;
     DataOAddr : cross Addr, DataOut;
 
