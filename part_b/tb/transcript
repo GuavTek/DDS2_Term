@@ -1,5 +1,5 @@
-# vsim -assertdebug -c -voptargs="+acc" test_hdlc bind_hdlc -do "log -r *; run -all; exit" 
-# Start time: 19:52:33 on Apr 20,2021
+# vsim -assertdebug -coverage -c -voptargs="+acc" test_hdlc bind_hdlc -do "coverage save -onexit sim_cov;log -r *; run -all; exit" 
+# Start time: 16:47:19 on Apr 21,2021
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "RxBuff(fast)".
@@ -38,8 +38,29 @@
 # Loading work.bind_hdlc(fast)
 # ** Warning: (vsim-3839) ./test_hdlc.sv(51): Variable '/test_hdlc/uin_hdlc/Tx_Done', driven via a port connection, is multiply driven. See ./test_hdlc.sv(63).
 #    Time: 0 ns  Iteration: 0  Instance: /test_hdlc File: ./test_hdlc.sv
+# coverage save -onexit sim_cov
 # log -r *
 #  run -all
+# ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'Rx_FrameSize' of covergroup instance '\/test_hdlc/u_testPr/cov_rx_inst '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
+# ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'Rx_DataBuffOut' of covergroup instance '\/test_hdlc/u_testPr/cov_rx_inst '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
+# ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'Tx_Data' of covergroup instance '\/test_hdlc/u_testPr/cov_tx_inst '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
+# ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'Tx_FrameSize' of covergroup instance '\/test_hdlc/u_testPr/cov_tx_inst '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
+# ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'Tx_DataOutBuff' of covergroup instance '\/test_hdlc/u_testPr/cov_tx_inst '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
+# ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'Tx_DataInBuff' of covergroup instance '\/test_hdlc/u_testPr/cov_tx_inst '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
+# ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'DataIn' of covergroup instance '\/test_hdlc/u_testPr/cov_reg_inst '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
+# ** Warning: (vsim-8522) The number of coverpoint bins is zero for the coverpoint 'DataOut' of covergroup instance '\/test_hdlc/u_testPr/cov_reg_inst '. All the user defined bins in the coverpoint are empty bins and hence it would not contribute towards the overall coverage result.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
+# ** Warning: (vsim-8550) The number of coverable (sub)bins is zero for the Coverpoint 'DataIn' specified in the list of Coverpoints of Cross '#cross__2#' of Covergroup instance '\/test_hdlc/u_testPr/cov_reg_inst '. The cross will never be covered.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
+# ** Warning: (vsim-8550) The number of coverable (sub)bins is zero for the Coverpoint 'DataOut' specified in the list of Coverpoints of Cross '#cross__3#' of Covergroup instance '\/test_hdlc/u_testPr/cov_reg_inst '. The cross will never be covered.
+#    Time: 0 ns  Iteration: 0  Instance: /test_hdlc/u_testPr
 # *************************************************************
 #                    0 - Starting Test Program
 # *************************************************************
@@ -637,15 +658,16 @@
 # *************************************************************
 #              7668750 - Finishing Test Program
 # *************************************************************
-# ** Note: $stop    : ./testPr_hdlc.sv(415)
+# ** Note: $stop    : ./testPr_hdlc.sv(574)
 #    Time: 7668750 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
-# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 415
-# Stopped at ./testPr_hdlc.sv line 415
+# Break in Module testPr_hdlc at ./testPr_hdlc.sv line 574
+# Stopped at ./testPr_hdlc.sv line 574
 #  exit
+# Saving coverage database on exit...
 # *********************************
 # *                               *
 # * 	Assertion Errors: 3	  *
 # *                               *
 # *********************************
-# End time: 19:52:37 on Apr 20,2021, Elapsed time: 0:00:04
-# Errors: 0, Warnings: 1
+# End time: 16:47:24 on Apr 21,2021, Elapsed time: 0:00:05
+# Errors: 0, Warnings: 11
