@@ -514,10 +514,10 @@ program testPr_hdlc(
     }
 
     WriteAddr : cross Addr, WrEn {
-      illegal_bins Read_only = {Addr.RX_Buff intersect WrEn.write, Addr.RX_Len intersect WrEn.write};
+      illegal_bins Read_only = (binsof(Addr.RX_Buff) && binsof(WrEn.write)) || (binsof(Addr.RX_Len) && binsof(WrEn.write));
     }
     ReadAddr : cross Addr, RdEn {
-      illegal_bins Write_only = {Addr.TX_Buff intersect RdEn.read};
+      illegal_bins Write_only = (binsof(Addr.TX_Buff) && binsof(RdEn.read));
     }
     DataIAddr : cross Addr, DataIn;
     DataOAddr : cross Addr, DataOut;
