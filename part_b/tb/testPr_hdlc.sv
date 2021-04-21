@@ -561,7 +561,7 @@ program testPr_hdlc(
     Send( 96, 0, 0);                 //Normal
     Send(126, 0, 1);                //Overflow
     Send(126, 0, 0);                 //Normal
-    Send(65, 0, 0);                  //Normal
+    Send(100, 0, 0);                  //Normal
     
     $display("*************************************************************");
     $display("%t - Running corner case: short message immediately after transmitt", $time);
