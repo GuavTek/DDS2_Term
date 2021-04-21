@@ -401,7 +401,7 @@ program testPr_hdlc(
       bins other = default;
     } //
     Rx_FrameSize : coverpoint uin_hdlc.Rx_FrameSize {
-      range[3] = default;
+      bins range[3] = default;
     }
     Rx_Overflow : coverpoint uin_hdlc.Rx_Overflow {
       bins overflow = {1};
