@@ -513,10 +513,10 @@ program testPr_hdlc(
       bins range[3] = default;
     }
 
-    cross Addr, WrEn;
-    cross Addr, RdEn;
-    cross Addr, DataIn;
-    cross Addr, DataOut;
+    WriteAddr : cross Addr, WrEn;
+    ReadAddr : cross Addr, RdEn;
+    DataIAddr : cross Addr, DataIn;
+    DataOAddr : cross Addr, DataOut;
 
   endgroup
 
