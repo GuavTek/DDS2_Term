@@ -108,57 +108,57 @@ Covergroup                                             Metric       Goal    Stat
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin valid                                        6460          1    Covered              
-        bin notValid                                     8878          1    Covered              
+        bin valid                                        7162          1    Covered              
+        bin notValid                                    10384          1    Covered              
     Coverpoint Rx                                      100.0%        100    Covered              
         covered/total bins:                                 3          3                      
         missing/total bins:                                 0          3                      
         % Hit:                                         100.0%        100                      
-        bin startStop                                      20          1    Covered              
-        bin idle                                         8678          1    Covered              
-        bin abort                                          11          1    Covered              
+        bin startStop                                      22          1    Covered              
+        bin idle                                        10165          1    Covered              
+        bin abort                                          12          1    Covered              
     Coverpoint RxEN                                     50.0%        100    Uncovered            
         covered/total bins:                                 1          2                      
         missing/total bins:                                 1          2                      
         % Hit:                                          50.0%        100                      
-        bin enabled                                     15338          1    Covered              
+        bin enabled                                     17546          1    Covered              
         bin disabled                                        0          1    ZERO                 
     Coverpoint Rx_Data                                 100.0%        100    Covered              
         covered/total bins:                                 3          3                      
         missing/total bins:                                 0          3                      
         % Hit:                                         100.0%        100                      
-        bin range[0]                                    10179          1    Covered              
-        bin range[1]                                     2528          1    Covered              
-        bin range[2]                                     2631          1    Covered              
+        bin range[0]                                    11864          1    Covered              
+        bin range[1]                                     2779          1    Covered              
+        bin range[2]                                     2903          1    Covered              
     Coverpoint Rx_AbortSignal                          100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
         bin abort                                         574          1    Covered              
-        bin notAbort                                    14764          1    Covered              
+        bin notAbort                                    16972          1    Covered              
     Coverpoint Rx_Ready                                100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin ready                                         394          1    Covered              
-        bin busy                                        14944          1    Covered              
+        bin ready                                         568          1    Covered              
+        bin busy                                        16978          1    Covered              
     Coverpoint Rx_WrBuff                               100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     14552          1    Covered              
-        bin auto[1]                                       786          1    Covered              
+        bin auto[0]                                     16674          1    Covered              
+        bin auto[1]                                       872          1    Covered              
     Coverpoint Rx_EoF                                  100.0%        100    Covered              
         covered/total bins:                                 1          1                      
         missing/total bins:                                 0          1                      
         % Hit:                                         100.0%        100                      
-        bin frameEnd                                       11          1    Covered              
-        default bin other                               15327               Occurred             
+        bin frameEnd                                       12          1    Covered              
+        default bin other                               17534               Occurred             
     Coverpoint Rx_FrameSize [2]                          0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
-        default bin range[0]                            11347               Occurred             
+        default bin range[0]                            13555               Occurred             
         default bin range[1]                             3991               Occurred             
         default bin range[2]                                0               ZERO                 
     Coverpoint Rx_Overflow                             100.0%        100    Covered              
@@ -166,86 +166,86 @@ Covergroup                                             Metric       Goal    Stat
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
         bin overflow                                       92          1    Covered              
-        bin normal                                      15246          1    Covered              
+        bin normal                                      17454          1    Covered              
     Coverpoint Rx_FCSerr                               100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
         bin errors                                          1          1    Covered              
-        bin normal                                      15337          1    Covered              
+        bin normal                                      17545          1    Covered              
     Coverpoint Rx_FCSen                                100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     10987          1    Covered              
-        bin auto[1]                                      4351          1    Covered              
+        bin auto[0]                                     12291          1    Covered              
+        bin auto[1]                                      5255          1    Covered              
     Coverpoint Rx_DataBuffOut [2]                        0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
-        default bin range[0]                            15071               Occurred             
-        default bin range[1]                              117               Occurred             
-        default bin range[2]                              150               Occurred             
+        default bin range[0]                            17159               Occurred             
+        default bin range[1]                              176               Occurred             
+        default bin range[2]                              211               Occurred             
     Coverpoint Rx_RdBuff                               100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     14921          1    Covered              
-        bin auto[1]                                       417          1    Covered              
+        bin auto[0]                                     17045          1    Covered              
+        bin auto[1]                                       501          1    Covered              
     Coverpoint Rx_NewByte                              100.0%        100    Covered              
         covered/total bins:                                 1          1                      
         missing/total bins:                                 0          1                      
         % Hit:                                         100.0%        100                      
-        bin newByte                                       790          1    Covered              
-        default bin other                               14548               Occurred             
+        bin newByte                                       876          1    Covered              
+        default bin other                               16670               Occurred             
     Coverpoint Rx_StartZeroDetect                      100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     15327          1    Covered              
-        bin auto[1]                                        11          1    Covered              
+        bin auto[0]                                     17534          1    Covered              
+        bin auto[1]                                        12          1    Covered              
     Coverpoint Rx_FlagDetect                           100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin detected                                       20          1    Covered              
-        bin none                                        15318          1    Covered              
+        bin detected                                       22          1    Covered              
+        bin none                                        17524          1    Covered              
     Coverpoint Rx_AbortDetect                          100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin aborted                                        11          1    Covered              
-        bin normal                                      15327          1    Covered              
+        bin aborted                                        12          1    Covered              
+        bin normal                                      17534          1    Covered              
     Coverpoint Rx_FrameError                           100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin error                                        7758          1    Covered              
-        bin normal                                       7580          1    Covered              
+        bin error                                        9059          1    Covered              
+        bin normal                                       8487          1    Covered              
     Coverpoint Rx_Drop                                  50.0%        100    Uncovered            
         covered/total bins:                                 1          2                      
         missing/total bins:                                 1          2                      
         % Hit:                                          50.0%        100                      
-        bin auto[0]                                     15338          1    Covered              
+        bin auto[0]                                     17546          1    Covered              
         bin auto[1]                                         0          1    ZERO                 
     Coverpoint Rx_StartFCS                             100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     15327          1    Covered              
-        bin auto[1]                                        11          1    Covered              
+        bin auto[0]                                     17534          1    Covered              
+        bin auto[1]                                        12          1    Covered              
     Coverpoint Rx_StopFCS                              100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     15329          1    Covered              
-        bin auto[1]                                         9          1    Covered              
+        bin auto[0]                                     17536          1    Covered              
+        bin auto[1]                                        10          1    Covered              
     Coverpoint ZeroDetect                              100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     15245          1    Covered              
-        bin auto[1]                                        93          1    Covered              
+        bin auto[0]                                     17443          1    Covered              
+        bin auto[1]                                       103          1    Covered              
  TYPE /test_hdlc/u_testPr/cov_tx                        96.8%        100    Uncovered            
     covered/total bins:                                    32         33                      
     missing/total bins:                                     1         33                      
@@ -339,127 +339,127 @@ Covergroup                                             Metric       Goal    Stat
         covered/total bins:                                 3          3                      
         missing/total bins:                                 0          3                      
         % Hit:                                         100.0%        100                      
-        bin startStop                                       9          1    Covered              
-        bin idle                                        12074          1    Covered              
-        bin abort                                           4          1    Covered              
+        bin startStop                                      12          1    Covered              
+        bin idle                                        13698          1    Covered              
+        bin abort                                           6          1    Covered              
     Coverpoint TxEN                                     50.0%        100    Uncovered            
         covered/total bins:                                 1          2                      
         missing/total bins:                                 1          2                      
         % Hit:                                          50.0%        100                      
-        bin enabled                                     15338          1    Covered              
+        bin enabled                                     17546          1    Covered              
         bin disabled                                        0          1    ZERO                 
     Coverpoint Tx_ValidFrame                           100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin valid                                        3204          1    Covered              
-        bin notValid                                    12134          1    Covered              
+        bin valid                                        3765          1    Covered              
+        bin notValid                                    13781          1    Covered              
     Coverpoint Tx_Data [2]                               0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
-        default bin range[0]                             1947               Occurred             
-        default bin range[1]                             2584               Occurred             
-        default bin range[2]                            10807               Occurred             
+        default bin range[0]                             2492               Occurred             
+        default bin range[1]                             2340               Occurred             
+        default bin range[2]                            12714               Occurred             
     Coverpoint Tx_AbortedTrans                         100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
         bin abort                                          15          1    Covered              
-        bin notAbort                                    15323          1    Covered              
+        bin notAbort                                    17531          1    Covered              
     Coverpoint Tx_WriteFCS                             100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     15311          1    Covered              
-        bin auto[1]                                        27          1    Covered              
+        bin auto[0]                                     17513          1    Covered              
+        bin auto[1]                                        33          1    Covered              
     Coverpoint Tx_InitZero                             100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     15332          1    Covered              
-        bin auto[1]                                         6          1    Covered              
+        bin auto[0]                                     17539          1    Covered              
+        bin auto[1]                                         7          1    Covered              
     Coverpoint Tx_StartFCS                             100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     15332          1    Covered              
-        bin auto[1]                                         6          1    Covered              
+        bin auto[0]                                     17539          1    Covered              
+        bin auto[1]                                         7          1    Covered              
     Coverpoint Tx_FrameSize [2]                          0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
-        default bin range[0]                             9137               Occurred             
-        default bin range[1]                             6201               Occurred             
+        default bin range[0]                            11228               Occurred             
+        default bin range[1]                             6318               Occurred             
         default bin range[2]                                0               ZERO                 
     Coverpoint Tx_RdBuff                               100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     14960          1    Covered              
-        bin auto[1]                                       378          1    Covered              
+        bin auto[0]                                     17104          1    Covered              
+        bin auto[1]                                       442          1    Covered              
     Coverpoint Tx_NewByte                              100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     14944          1    Covered              
-        bin auto[1]                                       394          1    Covered              
+        bin auto[0]                                     17084          1    Covered              
+        bin auto[1]                                       462          1    Covered              
     Coverpoint Tx_FCSDone                              100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     12175          1    Covered              
-        bin auto[1]                                      3163          1    Covered              
+        bin auto[0]                                     13740          1    Covered              
+        bin auto[1]                                      3806          1    Covered              
     Coverpoint Tx_DataOutBuff [2]                        0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
-        default bin range[0]                            10528               Occurred             
-        default bin range[1]                             2547               Occurred             
-        default bin range[2]                             2263               Occurred             
+        default bin range[0]                            12127               Occurred             
+        default bin range[1]                             2310               Occurred             
+        default bin range[2]                             3109               Occurred             
     Coverpoint Tx_Done                                 100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin ready                                        7829          1    Covered              
-        bin notReady                                     7509          1    Covered              
+        bin ready                                        8769          1    Covered              
+        bin notReady                                     8777          1    Covered              
     Coverpoint Tx_Full                                 100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
         bin overflow                                       12          1    Covered              
-        bin normal                                      15326          1    Covered              
+        bin normal                                      17534          1    Covered              
     Coverpoint Tx_DataAvail                            100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                      8723          1    Covered              
-        bin auto[1]                                      6615          1    Covered              
+        bin auto[0]                                      9792          1    Covered              
+        bin auto[1]                                      7754          1    Covered              
     Coverpoint Tx_WrBuff                               100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     14889          1    Covered              
-        bin auto[1]                                       449          1    Covered              
+        bin auto[0]                                     17032          1    Covered              
+        bin auto[1]                                       514          1    Covered              
     Coverpoint Tx_Enable                               100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     15332          1    Covered              
-        bin auto[1]                                         6          1    Covered              
+        bin auto[0]                                     17539          1    Covered              
+        bin auto[1]                                         7          1    Covered              
     Coverpoint Tx_AbortFrame                           100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin auto[0]                                     15337          1    Covered              
+        bin auto[0]                                     17545          1    Covered              
         bin auto[1]                                         1          1    Covered              
     Coverpoint Tx_DataInBuff [2]                         0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
-        default bin range[0]                            15039               Occurred             
-        default bin range[1]                              147               Occurred             
-        default bin range[2]                              152               Occurred             
+        default bin range[0]                            17186               Occurred             
+        default bin range[1]                              177               Occurred             
+        default bin range[2]                              183               Occurred             
  TYPE /test_hdlc/u_testPr/cov_reg                      100.0%        100    Covered              
     covered/total bins:                                    26         26                      
     missing/total bins:                                     0         26                      
@@ -510,63 +510,63 @@ Covergroup                                             Metric       Goal    Stat
         missing/total bins:                                 0          5                      
         % Hit:                                         100.0%        100                      
         illegal_bin other                                   0               ZERO                 
-        bin TX_SCR                                       6755          1    Covered              
-        bin TX_Buff                                       898          1    Covered              
-        bin RX_SCR                                       6795          1    Covered              
-        bin RX_Buff                                       884          1    Covered              
-        bin RX_Len                                          6          1    Covered              
+        bin TX_SCR                                       7926          1    Covered              
+        bin TX_Buff                                      1028          1    Covered              
+        bin RX_SCR                                       7522          1    Covered              
+        bin RX_Buff                                      1062          1    Covered              
+        bin RX_Len                                          8          1    Covered              
     Coverpoint WrEn                                    100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin write                                         467          1    Covered              
-        bin noWrite                                     14871          1    Covered              
+        bin write                                         534          1    Covered              
+        bin noWrite                                     17012          1    Covered              
     Coverpoint RdEn                                    100.0%        100    Covered              
         covered/total bins:                                 2          2                      
         missing/total bins:                                 0          2                      
         % Hit:                                         100.0%        100                      
-        bin read                                          438          1    Covered              
-        bin noRead                                      14900          1    Covered              
+        bin read                                          525          1    Covered              
+        bin noRead                                      17021          1    Covered              
     Coverpoint DataIn [2]                                0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
-        default bin range[0]                            14738               Occurred             
-        default bin range[1]                              294               Occurred             
-        default bin range[2]                              306               Occurred             
+        default bin range[0]                            16824               Occurred             
+        default bin range[1]                              354               Occurred             
+        default bin range[2]                              368               Occurred             
     Coverpoint DataOut [2]                               0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      
         missing/total bins:                                 0          0                      
         % Hit:                                         100.0%        100                      
-        default bin range[0]                            15234               Occurred             
-        default bin range[1]                               47               Occurred             
-        default bin range[2]                               57               Occurred             
+        default bin range[0]                            17385               Occurred             
+        default bin range[1]                               76               Occurred             
+        default bin range[2]                               85               Occurred             
     Cross WriteAddr                                    100.0%        100    Covered              
         covered/total bins:                                 8          8                      
         missing/total bins:                                 0          8                      
         % Hit:                                         100.0%        100                      
-        bin <TX_SCR,write>                                  7          1    Covered              
-        bin <TX_Buff,write>                               449          1    Covered              
-        bin <TX_SCR,noWrite>                             6748          1    Covered              
-        bin <TX_Buff,noWrite>                             449          1    Covered              
-        bin <RX_SCR,write>                                 11          1    Covered              
-        bin <RX_SCR,noWrite>                             6784          1    Covered              
-        bin <RX_Buff,noWrite>                             884          1    Covered              
-        bin <RX_Len,noWrite>                                6          1    Covered              
+        bin <TX_SCR,write>                                  8          1    Covered              
+        bin <TX_Buff,write>                               514          1    Covered              
+        bin <TX_SCR,noWrite>                             7918          1    Covered              
+        bin <TX_Buff,noWrite>                             514          1    Covered              
+        bin <RX_SCR,write>                                 12          1    Covered              
+        bin <RX_SCR,noWrite>                             7510          1    Covered              
+        bin <RX_Buff,noWrite>                            1062          1    Covered              
+        bin <RX_Len,noWrite>                                8          1    Covered              
         illegal_bin Read_only                               0               ZERO                 
     Cross ReadAddr                                     100.0%        100    Covered              
         covered/total bins:                                 9          9                      
         missing/total bins:                                 0          9                      
         % Hit:                                         100.0%        100                      
-        bin <TX_SCR,read>                                   7          1    Covered              
-        bin <TX_SCR,noRead>                              6748          1    Covered              
-        bin <TX_Buff,noRead>                              898          1    Covered              
-        bin <RX_SCR,read>                                  11          1    Covered              
-        bin <RX_Buff,read>                                417          1    Covered              
-        bin <RX_SCR,noRead>                              6784          1    Covered              
-        bin <RX_Buff,noRead>                              467          1    Covered              
-        bin <RX_Len,read>                                   3          1    Covered              
-        bin <RX_Len,noRead>                                 3          1    Covered              
+        bin <TX_SCR,read>                                   8          1    Covered              
+        bin <TX_SCR,noRead>                              7918          1    Covered              
+        bin <TX_Buff,noRead>                             1028          1    Covered              
+        bin <RX_SCR,read>                                  12          1    Covered              
+        bin <RX_Buff,read>                                501          1    Covered              
+        bin <RX_SCR,noRead>                              7510          1    Covered              
+        bin <RX_Buff,noRead>                              561          1    Covered              
+        bin <RX_Len,read>                                   4          1    Covered              
+        bin <RX_Len,noRead>                                 4          1    Covered              
         illegal_bin Write_only                              0               ZERO                 
     Cross DataIAddr [2]                                  0.0%        100    ZERO                 
         covered/total bins:                                 0          0                      

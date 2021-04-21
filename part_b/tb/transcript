@@ -1,5 +1,5 @@
 # vsim -assertdebug -coverage -c -voptargs="+acc" test_hdlc bind_hdlc -do "coverage save -onexit sim_cov;log -r *; run -all; exit" 
-# Start time: 17:24:49 on Apr 21,2021
+# Start time: 18:50:18 on Apr 21,2021
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-143) Recognized 1 FSM in module "TxFCS(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "RxBuff(fast)".
@@ -308,7 +308,103 @@
 # PASS! data in Rx buffer correct
 # PASS! Correct FCS bytes generated
 # *************************************************************
-#              2971750 - Starting task Receive - FCS error
+#              2971750 - Starting task Receive - Normal
+# *************************************************************
+# PASS: Flag detect
+# PASS: Flag detect
+# PASS! End of frame is generated
+# PASS! Rx buffer is ready
+# PASS! No frame error
+# PASS! Abort flag not set
+# PASS! No overflow
+# PASS! Correct frame size
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! data in Rx buffer correct
+# PASS! Correct FCS bytes generated
+# *************************************************************
+#              3427250 - Starting task Receive - FCS error
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
@@ -318,7 +414,7 @@
 # PASS! Rx_FrameError flag is set
 # PASS! Rx_Ready flag not set
 # *************************************************************
-#              3281750 - Starting task Receive - Non-byte aligned
+#              3733750 - Starting task Receive - Non-byte aligned
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
@@ -328,7 +424,7 @@
 # PASS! Rx_FrameError flag is set
 # PASS! Rx_Ready flag not set
 # *************************************************************
-#              3430750 - Starting task Receive - Non-byte aligned
+#              3883750 - Starting task Receive - Non-byte aligned
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
@@ -338,7 +434,7 @@
 # PASS! Rx_FrameError flag is set
 # PASS! Rx_Ready flag not set
 # *************************************************************
-#              3775750 - Starting task Receive - Non-byte aligned
+#              4229750 - Starting task Receive - Non-byte aligned
 # *************************************************************
 # PASS: Flag detect
 # PASS: Flag detect
@@ -348,7 +444,7 @@
 # PASS! Rx_FrameError flag is set
 # PASS! Rx_Ready flag not set
 # *************************************************************
-#              3843250 - Starting task Send - Normal
+#              4296750 - Starting task Send - Normal
 # *************************************************************
 # PASS! data in Tx buffer correct
 # PASS! data in Tx buffer correct
@@ -381,14 +477,14 @@
 # PASS! TX_Full flag not asserted
 # PASS! Correct FCS bytes generated
 # *************************************************************
-#              4075750 - Starting task Send - Abort
+#              4530750 - Starting task Send - Abort
 # *************************************************************
 # PASS: Flag Generated
 # PASS: Flag Generated
 # PASS! TX_AbortedTrans flag asserted
 # PASS! Abort flag generated
 # *************************************************************
-#              4432250 - Starting task Send - Normal
+#              4887250 - Starting task Send - Normal
 # *************************************************************
 # PASS! data in Tx buffer correct
 # PASS! data in Tx buffer correct
@@ -493,12 +589,12 @@
 # PASS! TX_Full flag not asserted
 # PASS! Correct FCS bytes generated
 # *************************************************************
-#              5318750 - Starting task Send - Overflow
+#              5771250 - Starting task Send - Overflow
 # *************************************************************
 # PASS: Flag Generated
 # PASS! TX_Full flag asserted
 # *************************************************************
-#              5968250 - Starting task Send - Normal
+#              6420750 - Starting task Send - Normal
 # *************************************************************
 # PASS: Flag Generated
 # PASS: Flag Generated
@@ -635,39 +731,114 @@
 # PASS! TX_Full flag not asserted
 # PASS! Correct FCS bytes generated
 # *************************************************************
-#              7620750 - Running corner case: short message immediately after transmitt
+#              8077250 - Starting task Send - Normal
 # *************************************************************
-# *************************************************************
-#              7620750 - Starting task Send - Normal
-# *************************************************************
-# ERROR! wrong data in Tx buffer position           0. Found 00, should be 9f
+# PASS: Flag Generated
 # PASS! data in Tx buffer correct
 # PASS! data in Tx buffer correct
-# ERROR: No flag Generated
+# PASS! data in Tx buffer correct
 # PASS: Flag Generated
 # PASS! data in Tx buffer correct
 # PASS! data in Tx buffer correct
 # PASS! data in Tx buffer correct
 # PASS! data in Tx buffer correct
 # PASS! data in Tx buffer correct
-# ERROR! CRC bytes are wrong, 0000 was sent instead of 9db4
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! CRC bytes correct
 # PASS! TX_Done flag asserted
 # PASS! TX_AbortedTrans flag not asserted
 # PASS! TX_Full flag not asserted
 # PASS! Correct FCS bytes generated
 # *************************************************************
-#              7668750 - Finishing Test Program
+#              8684750 - Running corner case: short message immediately after transmitt
+# *************************************************************
+# *************************************************************
+#              8684750 - Starting task Send - Normal
+# *************************************************************
+# ERROR! wrong data in Tx buffer position           0. Found 00, should be 96
+# PASS: Flag Generated
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS: Flag Generated
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! data in Tx buffer correct
+# PASS! CRC bytes correct
+# PASS! TX_Done flag asserted
+# PASS! TX_AbortedTrans flag not asserted
+# PASS! TX_Full flag not asserted
+# PASS! Correct FCS bytes generated
+# *************************************************************
+#              8772750 - Finishing Test Program
 # *************************************************************
 # ** Note: $stop    : ./testPr_hdlc.sv(578)
-#    Time: 7668750 ns  Iteration: 1  Instance: /test_hdlc/u_testPr
+#    Time: 8772750 ns  Iteration: 2  Instance: /test_hdlc/u_testPr
 # Break in Module testPr_hdlc at ./testPr_hdlc.sv line 578
 # Stopped at ./testPr_hdlc.sv line 578
 #  exit
 # Saving coverage database on exit...
 # *********************************
 # *                               *
-# * 	Assertion Errors: 3	  *
+# * 	Assertion Errors: 1	  *
 # *                               *
 # *********************************
-# End time: 17:24:54 on Apr 21,2021, Elapsed time: 0:00:05
+# End time: 18:50:22 on Apr 21,2021, Elapsed time: 0:00:04
 # Errors: 0, Warnings: 11
