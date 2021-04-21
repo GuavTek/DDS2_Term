@@ -548,6 +548,7 @@ program testPr_hdlc(
    // Receive( 35, 0, 0, 0, 0, 0, 0); //Normal    
     Receive(126, 0, 0, 0, 1, 0, 0); //Overflow
     Receive( 25, 0, 0, 0, 0, 0, 0); //Normal
+    Receive( 84, 0, 0, 0, 0, 0, 0); //Normal
     Receive( 69, 0, 1, 0, 0, 0, 0); //FCSerr
     Receive( 30, 0, 0, 1, 0, 0, 0); //NonByteAligned
     Receive( 78, 0, 0, 3, 0, 0, 0); //NonByteAligned
@@ -560,6 +561,7 @@ program testPr_hdlc(
     Send( 96, 0, 0);                 //Normal
     Send(126, 0, 1);                //Overflow
     Send(126, 0, 0);                 //Normal
+    Send(65, 0, 0);                  //Normal
     
     $display("*************************************************************");
     $display("%t - Running corner case: short message immediately after transmitt", $time);
