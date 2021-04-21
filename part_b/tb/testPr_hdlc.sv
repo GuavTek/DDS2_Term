@@ -470,7 +470,7 @@ program testPr_hdlc(
     Tx_NewByte : coverpoint uin_hdlc.Tx_NewByte;
     Tx_FCSDone : coverpoint uin_hdlc.Tx_FCSDone;
     Tx_DataOutBuff : coverpoint uin_hdlc.Tx_DataOutBuff {
-      range[3] = default;
+      bins range[3] = default;
     } //
     Tx_Done : coverpoint uin_hdlc.Tx_Done {
       bins ready = {1};
@@ -485,7 +485,7 @@ program testPr_hdlc(
     Tx_Enable : coverpoint uin_hdlc.Tx_Enable;
     Tx_AbortFrame : coverpoint uin_hdlc.Tx_AbortFrame;
     Tx_DataInBuff : coverpoint uin_hdlc.Tx_DataInBuff {
-      range[3] = default;
+      bins range[3] = default;
     }
   endgroup
 
