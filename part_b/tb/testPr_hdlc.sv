@@ -372,8 +372,6 @@ program testPr_hdlc(
     Rx_ValidFrame : coverpoint uin_hdlc.Rx_ValidFrame { //
       bins valid = {1};
       bins notValid = {0};
-//      bins start = (0=>1);
-//      bins stop = (1=>0);
     }
     Rx : coverpoint uin_hdlc.Rx {
       bins startStop = (0 => 1[*6] => 0);
